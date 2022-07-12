@@ -7,8 +7,8 @@ import { signup, login, logout } from "./actions/session_actions"
 document.addEventListener("DOMContentLoaded", () => {
     const root = document.getElementById("root");
     const store = configureStore();
-//   ReactDOM.render(<Root store={store} />, root);
-    ReactDOM.render(<h1>Its working</h1>, root);
+    ReactDOM.render(<Root store={store} />, root);
+    // ReactDOM.render(<h1>Its working</h1>, root);
 
 
     window.getState = store.getState;
