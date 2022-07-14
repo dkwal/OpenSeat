@@ -1,0 +1,53 @@
+.restaurants-header {
+    font-size: 24px;
+    font-weight: 400;
+    margin-left: 32px;
+    padding: 8px 0px;
+}
+
+.restaurant-index {
+    display: flex;
+    justify-content: center;
+
+}
+
+.restaurant-index-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    padding: 8px;
+    margin: 8px;
+}
+
+.ratings-reviews {
+    display: flex;
+}
+
+.overall-rating, .review-count {
+    padding-right: 8px;
+}
+
+.restaurant-details {
+    display: flex;
+}
+
+.food-type, .price-range {
+    padding: 4px 4px 4px 0px;
+}
+
+.restaurant-name {
+    font-size: 18px;
+    font-weight: 100;
+    padding: 4px 0px;
+}
+
+.timeslot-buttons button {
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-top: 24px;
+    margin-right: 4px;
+    border: 1px solid gray;
+    cursor: pointer;
+}

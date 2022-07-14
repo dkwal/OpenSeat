@@ -1,0 +1,42 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    padding: 8px 16px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.login-signup button{
+    border-radius: 4px;
+    border: 1px solid gray;
+    padding: 8px 16px;
+    margin: 8px;
+    cursor: pointer;
+}
+
+.signup-button{
+    background-color: #247F9E;
+    color: white;
+}
+
+.login-button{
+    background-color: transparent;
+}
+
+.logout-button{
+    border-radius: 4px;
+    border: 1px solid gray;
+    padding: 8px 16px;
+    margin: 8px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.header-group{
+    display: flex;
+    align-items: center;
+}
