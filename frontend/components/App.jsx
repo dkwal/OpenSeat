@@ -2,6 +2,8 @@ import React from "react";
 import GreetingContainer from "./greeting_container";
 import Modal from "./modal"
 import RestaurauntIndexContainer from "./restaurant_index/restaurant_index_container";
+import RestaurantShowContainer from "./restaurant_show/restaurant_show_container";
+import { Switch, Route } from "react-router-dom";
 
 const App = () => (
     <div>
@@ -10,9 +12,10 @@ const App = () => (
             <h1 className="logo">OpenSeat</h1>
             <GreetingContainer />
         </header>
-        <div className="search-bar">Search bar will go here</div>
-        <h2 className="restaurants-header">Recommended restaurants</h2>
-        <RestaurauntIndexContainer />
+        <Switch>
+            <Route exact path="/" component={RestaurauntIndexContainer} />
+            <Route path="/restaurants/:restaurantId" component={RestaurantShowContainer} />
+        </Switch>
     </div>
 )
 

@@ -9,7 +9,7 @@ class RestaurantIndexItem extends React.Component {
     }
 
     updatePath() {
-        let path = `/api/restaurants/${this.props.restaurant.id}`;
+        let path = `/restaurants/${this.props.restaurant.id}`;
         this.props.history.push(path);
     }
 

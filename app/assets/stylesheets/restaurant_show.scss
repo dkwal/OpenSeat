@@ -1,0 +1,69 @@
+.restaurant-show {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.restaurant-left-col {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin-right: 16px;
+
+
+}
+
+.restaurant-show-name {
+    font-size: 48px;
+
+}
+
+.details-list {
+    display: flex;
+}
+
+.details-list li {
+    padding: 10px 0px;
+    margin-right: 10px;
+}
+
+.reservation-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.make-reservation {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 8px;
+}
+
+.date-and-time {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0px;
+}
+
+.reservation-detail-header {
+    padding: 8px 0px;
+}
+
+.reservation-party {
+    margin-left: 6px;
+}
+
+.reservation-date {
+    margin-left: 6px;
+}
+
+.reservation-time {
+    margin-right: 6px;
+}
+
+.additional-info-header {
+    font-size: 20px;
+}
