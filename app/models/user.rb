@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
 
+    has_many :reservations,
+        primary_key: :id,
+        foreign_key: :user_id
+
     #SPIRE
 
     def self.find_by_credentials(email, password)

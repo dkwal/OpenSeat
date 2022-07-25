@@ -1,22 +1,47 @@
 .restaurants-header {
     font-size: 24px;
     font-weight: 400;
-    margin-left: 32px;
-    padding: 8px 0px;
+    padding: 16px 0px;
 }
 
 .restaurant-index {
     display: flex;
-    justify-content: center;
+    width: 1314px;
 
+
+}
+
+.restaurant-index-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container {
+    width: 1314px;
 }
 
 .restaurant-index-item {
     display: flex;
     flex-direction: column;
+    margin-right: 16px;
     border: 1px solid lightgray;
+    width: 250px;
+    border-radius: 4px;
+}
+
+.restaurant-index:last-child {
+    margin-right: 0px;
+}
+
+
+.restaurant-index-item img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.restaurant-index-item-details {
     padding: 8px;
-    margin: 8px;
 }
 
 .ratings-reviews {
@@ -42,7 +67,7 @@
 }
 
 .timeslot-buttons button {
-    background-color: red;
+    background-color: #da3743;
     color: white;
     border-radius: 4px;
     padding: 8px 16px;

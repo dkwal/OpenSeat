@@ -16,18 +16,21 @@ class RestaurantIndexItem extends React.Component {
     render() {
         return(
             <div className="restaurant-index-item" onClick={this.updatePath}>
-                <div className="restaurant-name">{this.props.restaurant.name}</div>
-                <div className="ratings-reviews">
-                    <div className="overall-rating">Overall rating</div>
-                    <div className="review-count">Num reviews</div>
-                </div>
-                <div className="restaurant-details">
-                    <div className="food-type">{this.props.restaurant.food_type} &#11825; </div>
-                    <div className="price-range">{this.props.restaurant.price_range}</div>
-                </div>
-                <div className="timeslot-buttons">
-                    <button>5:30 pm</button>
-                    <button>6:00 pm</button>
+                <img src={this.props.restaurant.photourl} />
+                <div className="restaurant-index-item-details">
+                    <div className="restaurant-name">{this.props.restaurant.name}</div>
+                    <div className="ratings-reviews">
+                        <div className="overall-rating">Overall rating</div>
+                        <div className="review-count">Num reviews</div>
+                    </div>
+                    <div className="restaurant-details">
+                        <div className="food-type">{this.props.restaurant.food_type} &#11825; </div>
+                        <div className="price-range">{this.props.restaurant.price_range}</div>
+                    </div>
+                    <div className="timeslot-buttons">
+                        <button>5:30 pm</button>
+                        <button>6:00 pm</button>
+                    </div>
                 </div>
             </div>
         )

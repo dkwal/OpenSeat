@@ -36,34 +36,33 @@ class LoginForm extends React.Component {
 
     componentWillUnmount() {
         this.props.removeSessionErrors();
-        console.log("unmounting");
     }
 
     render() {
         return (
             <div className="login-form-container">
+                <h2>Welcome to OpenSeat!</h2>
+                <h3>Enter your details below to sign in.</h3>
                 <form onSubmit={this.handleSubmit} className="login-form-box">
-                    Please {this.props.formType} or {this.props.otherForm}
                     {this.renderErrors()}
                     <div className="login-form">
-                        <br />
-                        <label>Email: 
+                        <div className="login-inputs-container">
                             <input type="text"
-                            value={this.state.email}
+                            placeholder="Email"
                             onChange={this.update("email")}
                             className="login-input"
                             />
-                        </label>
-                        <br />
-                        <label>Password: 
+
                             <input type="password"
-                            value={this.state.password}
+                            placeholder="Password"
                             onChange={this.update("password")}
                             className="login-input"
                             />
-                        </label>
-                        <br />
-                        <input className="session-submit" type="submit" value={this.props.formType} />
+                        </div>
+                        <input className="session-submit" type="submit" value="Log in" />
+                        <div className="modal-redirect">
+                           Need an account?{this.props.otherForm}
+                        </div>
                     </div>
                 </form>
             </div>
