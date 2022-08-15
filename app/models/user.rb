@@ -9,7 +9,13 @@ class User < ApplicationRecord
 
     has_many :reservations,
         primary_key: :id,
-        foreign_key: :user_id
+        foreign_key: :user_id,
+        class_name: :Reservation
+
+    has_many :reviews,
+        primary_key: :id,
+        foreign_key: :user_id,
+        class_name: :Review
 
     #SPIRE
 
