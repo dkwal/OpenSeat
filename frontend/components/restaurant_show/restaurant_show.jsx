@@ -1,5 +1,6 @@
 import React from "react";
 import ReservationTileContainer from "../reservation/reservation_tile_container";
+import ReviewShow from "../review/review_show";
 
 class RestaurantShow extends React.Component {
     constructor(props) {
@@ -14,6 +15,12 @@ class RestaurantShow extends React.Component {
         const restaurant = this.props.restaurant;
         if (!this.props.restaurant) {
             return null;
+        }
+        let reviews;
+        if (!restaurant.reviews) {
+            reviews = [];
+        } else {
+            reviews = Object.values(restaurant.reviews)
         }
         return(
         <div className="restaurant-show">
@@ -34,6 +41,14 @@ class RestaurantShow extends React.Component {
                     </ul>
                 </div>
                 <div className="restaurant-description">{restaurant.description}</div>
+                <div className="reviews-header">What people are saying</div>
+                <ul className="reviews-index">
+                    {reviews.map( review => (
+                        <li key={review.id}>
+                            <ReviewShow review={review}/>
+                        </li>
+                    ))}
+                </ul>
             </div>
             <div className="restaurant-right-col">
                 <ReservationTileContainer restaurantId={restaurant.id} />
