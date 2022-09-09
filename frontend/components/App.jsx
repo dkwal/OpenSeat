@@ -8,6 +8,8 @@ import CreateReservationFormContainer from "./reservation/create_reservation_for
 import EditReservationFormContainer from "./reservation/edit_reservation_form_container";
 import ReservationShowContainer from "./reservation/reservation_show_container";
 import CancelReservationConfirmationContainer from "./reservation/cancel_reservation_confirmation_container";
+import { ProtectedRoute, AuthRoute } from "../util/route_util";
+import UserProfile from "./profile/user_profile";
 
 const App = () => (
     <div>
@@ -25,6 +27,7 @@ const App = () => (
             <Route path="/reservations/:reservationId/edit" component={EditReservationFormContainer} />
             <Route exact path="/reservations/:reservationId" component={ReservationShowContainer}/>
             <Route path="/reservations/:reservationId/cancel" component={CancelReservationConfirmationContainer}/>
+            <ProtectedRoute path="/users/:userId/profile" component={UserProfile}/>
         </Switch>
     </div>
 )
