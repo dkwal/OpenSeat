@@ -1,12 +1,25 @@
 import React from "react";
+import ProfileReservation from "./profile_reservation";
 
-const UserProfile = (props) => {
+class UserProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
 
-    return (
-        <div>
-            This is just a test.
-        </div>
-    )
+    render() {
+        return (
+            <div>
+                <ul>
+                    {Object.values(this.props.currentUser.reservations).map( reservation => (
+                        <li key={reservation.id}>
+                            <ProfileReservation reservation={reservation} />
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
 }
 
 export default UserProfile;
