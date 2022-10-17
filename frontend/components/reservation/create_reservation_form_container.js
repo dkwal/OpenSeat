@@ -7,6 +7,7 @@ const mapStateToProps = (state, ownProps) => {
     const params = ownProps.match.params;
     const restaurantId = params.restaurant_id;
     const partySize = params.party_size;
+    const restaurant = state.entities.restaurants[restaurantId];
     
     let userId;
     if (params.user_id === '0') {
@@ -26,6 +27,7 @@ const mapStateToProps = (state, ownProps) => {
             party_size: partySize,
 
         },
+        restaurant: restaurant,
         errors: state.errors.reservation
     }
 }

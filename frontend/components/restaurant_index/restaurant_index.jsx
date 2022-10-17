@@ -33,11 +33,13 @@ class RestaurantIndex extends React.Component {
         return (
             <div>
                 <div className="search-bar">
+                    <div className="search-bar-text">Find your seat for any occasion</div>
                     <input ref={ (input) => { this.searchBar = input } }
                         value={ this.state.term }
                         onChange={ this.getAutoCompleteResults.bind(this) }
                         type='text'
-                        placeholder='Search...' />
+                        placeholder='Search...'
+                        className="search-field" />
                 </div>
                 <div className="restaurant-index-container">
                     <div className="header-container">
@@ -47,18 +49,6 @@ class RestaurantIndex extends React.Component {
                         { autoCompleteList }
                     </ul>
                 </div>
-                {/* <div className="restaurant-index-container">
-                    <div className="header-container">
-                        <h2 className="restaurants-header">Recommended restaurants</h2>
-                    </div>
-                    <ul className="restaurant-index">
-                        {this.props.restaurants.map( restaurant => (
-                            <li key={restaurant.id}>
-                                <RestaurantIndexItem restaurant={restaurant}/>
-                            </li>
-                        ))}
-                    </ul>
-                </div> */}
             </div>
         )
     } 

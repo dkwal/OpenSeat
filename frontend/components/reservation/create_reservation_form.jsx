@@ -5,10 +5,12 @@ import ReservationConfirmation from "./reservation_confirmation";
 class CreateReservationForm extends React.Component {
     constructor(props) {
         super(props);
+        const reservation = Object.assign({}, this.props.reservation, {date: props.match.params.date}, {time: convertStringToTime(props.match.params.time)});
         this.state = {
-            reservation: Object.assign({}, this.props.reservation, {date: props.match.params.date}, {time: convertStringToTime(props.match.params.time)}),
+            reservation: reservation,
             submitted: false,
-            submittedReservation: null
+            submittedReservation: null,
+            restaurant: this.props.restaurant
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -45,20 +47,21 @@ class CreateReservationForm extends React.Component {
         const renderReservationForm = () => {
             return (
                 <div>
-                    <h2>Create Reservation</h2>
+                    <h2>You're almost done!</h2>
+                    <div>{this.state.restaurant.name}</div>
                     <form onSubmit={this.handleSubmit}>
                         {this.renderErrors()}
-                        <label>First name: 
-                            <input type="text" value={this.state.reservation.first_name} onChange={this.update("first_name")}/>
+                        <label>
+                            <input type="text" placeholder="First name" value={this.state.reservation.first_name} onChange={this.update("first_name")}/>
                         </label>
-                        <label>Last name: 
-                            <input type="text" value={this.state.reservation.last_name} onChange={this.update("last_name")}/>
+                        <label>
+                            <input type="text" placeholder="Last name" value={this.state.reservation.last_name} onChange={this.update("last_name")}/>
                         </label>
-                        <label>Phone number: 
-                            <input type="text" value={this.state.reservation.phone_number} onChange={this.update("phone_number")}/>
+                        <label>
+                            <input type="text" placeholder="Phone number" value={this.state.reservation.phone_number} onChange={this.update("phone_number")}/>
                         </label>
-                        <label>Email: 
-                            <input type="text" value={this.state.reservation.email} onChange={this.update("email")}/>
+                        <label>
+                            <input type="text" placeholder="Email" value={this.state.reservation.email} onChange={this.update("email")}/>
                         </label>
                         <button>Make reservation</button>               
                      </form>
