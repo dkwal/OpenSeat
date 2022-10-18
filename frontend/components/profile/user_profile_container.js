@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import UserProfile from "./user_profile";
+import { fetchReservations } from "../../actions/reservation_actions";
 
 const mapStateToProps = ({ session, entities: { users } }) => {
     return {
@@ -7,4 +8,8 @@ const mapStateToProps = ({ session, entities: { users } }) => {
     }
 }
 
-export default connect(mapStateToProps, null)(UserProfile);
+const mapDispatchToProps = dispatch => ({
+    fetchReservations: () => dispatch(fetchReservations())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

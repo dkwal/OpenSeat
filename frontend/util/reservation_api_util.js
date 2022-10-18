@@ -1,3 +1,10 @@
+export const fetchReservations = (userId) => (
+    $.ajax({
+        method: 'GET',
+        url: `/#/users/${userId}/profile`
+    })
+)
+
 export const fetchReservation = (id) => (
     $.ajax({
         method: 'GET',

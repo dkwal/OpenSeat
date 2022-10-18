@@ -1,4 +1,8 @@
 class Api::ReservationsController < ApplicationController 
+    def index
+        @reservations = Reservation.where(user_id: params[:user_id])
+    end
+    
     def create
         @reservation = Reservation.new(reservation_params)
         if @reservation.save

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:create, :show, :update, :destroy]
     resources :reviews, only: [:create, :show, :update, :destroy]
   end
+  get "users/:user_id/profile", to: "reservations#index"
 
   root to: "static_pages#root"
 end
