@@ -1,0 +1,22 @@
+.profile-reservation {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 32px;
+    padding: 16px;
+    width: 60%;
+}
+
+.reservation-img {
+    border-radius: 4px;
+    height: 150px;
+    width: 150px;
+    margin-right: 32px;
+}
+
+.profile-reservation-restaurant {
+    font-weight: 700;
+    font-size: 18px;
+}
