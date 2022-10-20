@@ -27,7 +27,7 @@ const App = () => (
             <Route path="/reservations/:reservationId/edit" component={EditReservationFormContainer} />
             <Route exact path="/reservations/:reservationId" component={ReservationShowContainer}/>
             <Route path="/reservations/:reservationId/cancel" component={CancelReservationConfirmationContainer}/>
-            <ProtectedRoute path="/users/:userId/profile" component={UserProfileContainer}/>
+            <ProtectedRoute path="/users/:user_id/profile" component={UserProfileContainer}/>
         </Switch>
     </div>
 )

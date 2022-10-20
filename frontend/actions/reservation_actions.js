@@ -29,8 +29,8 @@ export const receiveErrors = errors => ({
     errors
 })
 
-export const fetchReservations = () => dispatch => (
-    APIUtil.fetchReservations()
+export const fetchReservations = (user_id) => dispatch => (
+    APIUtil.fetchReservations(user_id)
         .then(reservations => (
             dispatch(receiveReservations(reservations))
         ))
