@@ -73,9 +73,9 @@ export const isDateInPast = (date, time) => {
         return true;
     } else if (currentYear === year && currentMonth === month && currentDay === day) {
         // if same day, compare time
-        currentTime = today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
-        resTimeMilitary = convertTimeToMilitary(time);
-        resTime = parseInt(resTimeMilitary.slice(0, 2)) * 3600 + parseInt(resTimeMilitary.slice(3, 5)) * 60;
+        const currentTime = today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+        const resTimeMilitary = convertTimeToMilitary(time);
+        const resTime = parseInt(resTimeMilitary.slice(0, 2)) * 3600 + parseInt(resTimeMilitary.slice(3, 5)) * 60;
         if (currentTime >= resTime) {
             return true;
         } else {

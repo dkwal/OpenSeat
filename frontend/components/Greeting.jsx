@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { fetchReservations } from "../actions/reservation_actions";
 
 class Greeting extends React.Component {
     constructor(props) {
