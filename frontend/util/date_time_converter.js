@@ -62,8 +62,6 @@ export const isDateInPast = (date, time) => {
     const year = parseInt(date.slice(0,4));
     const month = parseInt(date.slice(5, 7));
     const day = parseInt(date.slice(8, 10));
-
-    console.log(currentDay, currentMonth, currentYear, year, month, day);
     
     if (currentYear > year) {
         return true;

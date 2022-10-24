@@ -10,6 +10,7 @@ import ReservationShowContainer from "./reservation/reservation_show_container";
 import CancelReservationConfirmationContainer from "./reservation/cancel_reservation_confirmation_container";
 import { ProtectedRoute, AuthRoute } from "../util/route_util";
 import UserProfileContainer from "./profile/user_profile_container";
+import CreateReviewFormContainer from "./review/create_review_form_container";
 
 const App = () => (
     <div>
@@ -22,12 +23,13 @@ const App = () => (
         </header>
         <Switch>
             <Route exact path="/" component={RestaurauntIndexContainer} />
-            <Route path="/restaurants/:restaurantId" component={RestaurantShowContainer} />
+            <Route exact path="/restaurants/:restaurantId" component={RestaurantShowContainer} />
             <Route path="/reservations/new/:user_id/:restaurant_id/:party_size/:date/:time" component={CreateReservationFormContainer} />
             <Route path="/reservations/:reservationId/edit" component={EditReservationFormContainer} />
             <Route exact path="/reservations/:reservationId" component={ReservationShowContainer}/>
             <Route path="/reservations/:reservationId/cancel" component={CancelReservationConfirmationContainer}/>
             <ProtectedRoute path="/users/:user_id/profile" component={UserProfileContainer}/>
+            <ProtectedRoute path="/restaurants/:restaurantId/reviews" component={CreateReviewFormContainer}/>
         </Switch>
     </div>
 )

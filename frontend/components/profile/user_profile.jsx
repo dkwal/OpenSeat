@@ -17,7 +17,6 @@ class UserProfile extends React.Component {
     }
 
     render() {
-        console.log("current state: ", this.state);
         const upcomingReservations = Object.values(this.state.reservations).filter( reservation => (
             !isDateInPast(reservation.date, reservation.time)
         ));
