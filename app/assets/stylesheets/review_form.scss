@@ -1,0 +1,47 @@
+.review-ratings-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.review-ratings {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-category {
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    align-items: center;
+}
+
+.review-category-name {
+    width: 120px;
+}
+
+
+.review-ratings .star {
+    fill: red;
+    width: 16px;
+    height: 15px;
+    transform: scale(2.0);
+    padding: 0px 10px;
+    opacity: 50%;
+}
+
+input[type=radio].star-radio {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+input[type=radio].star-radio + label {
+
+}

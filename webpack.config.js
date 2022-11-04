@@ -17,7 +17,18 @@ module.exports = {
             presets: ['@babel/env', '@babel/react']
           }
         },
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
     ]
   },
   devtool: 'source-map',

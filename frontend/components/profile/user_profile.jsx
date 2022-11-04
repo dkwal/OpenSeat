@@ -8,7 +8,6 @@ class UserProfile extends React.Component {
         this.state = {
             reservations: []
         };
-        console.log(props);
     }
     
     componentDidMount() {
