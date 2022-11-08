@@ -18,6 +18,8 @@ class ReviewShow extends React.Component {
                     <li>{review.service_rating}</li>
                     <li>Ambience</li>
                     <li>{review.ambience_rating}</li>
+                    <li>Value</li>
+                    <li>{review.value_rating}</li>
                 </ul>
                 <p className="review-body">{review.body}</p>
             </div>

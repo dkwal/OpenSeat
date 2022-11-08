@@ -5,6 +5,11 @@
     align-items: center;
 }
 
+.review-ratings-container h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
 .review-ratings {
     display: flex;
     flex-direction: column;
@@ -15,6 +20,7 @@
     flex-direction: row;
     height: 45px;
     align-items: center;
+    justify-content: center;
 }
 
 .review-category-name {
@@ -23,12 +29,10 @@
 
 
 .review-ratings .star {
-    fill: red;
     width: 16px;
     height: 15px;
     transform: scale(2.0);
-    padding: 0px 10px;
-    opacity: 50%;
+    margin: 0px 10px;
 }
 
 input[type=radio].star-radio {
@@ -42,6 +46,50 @@ input[type=radio].star-radio {
     width: 1px;
 }
 
-input[type=radio].star-radio + label {
+.rating-container > label {
+    float: right;
+    cursor: pointer;
+    fill: red;
+    opacity: 50%;
+}
 
+.rating-container:not(:hover) > input:checked ~ label {
+    fill: red;
+    opacity: 100%;  
+}
+
+.rating-container:hover > label:hover,
+.rating-container:hover > label:hover ~ label {
+    fill: red;
+    opacity: 100%;
+}
+
+
+.review-text {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    font: inherit;
+    margin-top: 16px;
+    height: 300px;
+    width: 500px;
+    padding: 8px 8px;
+}
+
+.submit-review-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.submit-review-button button {
+    background-color: #da3743;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    width: 120px;
+    padding: 16px 0px;
+    text-align: center;
+    text-decoration: none;
 }

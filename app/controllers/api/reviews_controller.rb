@@ -2,7 +2,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
         if @review.save
-            render :show
+            redirect_to api_restaurant_url(review_params[:restaurant_id])
         else
             render json: @review.errors.full_messages, status: 422
         end

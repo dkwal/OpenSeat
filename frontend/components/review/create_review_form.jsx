@@ -17,14 +17,15 @@ class CreateReviewForm extends React.Component {
                 user_id: this.props.userId,
                 restaurant_id: restaurant.id,
                 body: "",
-                overall_rating: 5,
-                food_rating: 5,
-                service_rating: 5,
-                ambience_rating: 5,
-                value_rating: 5
+                overall_rating: null,
+                food_rating: null,
+                service_rating: null,
+                ambience_rating: null,
+                value_rating: null
             },
             restaurant: restaurant
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -33,8 +34,19 @@ class CreateReviewForm extends React.Component {
             .then(response => this.setState({restaurant: response.restaurant}))
     }
 
-    handleSubmit() {
+    update(field) {
+        return e=> {
+            const oldReview = this.state.review;
+            const newReview = Object.assign({}, oldReview);
+            newReview[field] = e.currentTarget.value;
+            this.setState({review: newReview});
+        }
+    }
 
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.submitReview(this.state.review, this.state.restaurant.id)
+            .then(response => this.props.history.push(`/restaurants/${this.state.restaurant.id}`));
     }
 
     render() {
@@ -52,40 +64,43 @@ class CreateReviewForm extends React.Component {
                     <div className="review-category">
                         <div className="review-category-name">Overall</div>
                         <div className="rating-stars-container">
-                            <input className="star-radio" type="radio" id="r1-overall" />
-                            <label htmlFor="r1-overall">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                            <div className="rating-container">
+                                <input className="star-radio" type="radio" id="r5-overall" name="overall" value="5" onChange={this.update("overall_rating")} />
+                                <label htmlFor="r5-overall">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r2-overall" />
-                            <label htmlFor="r2-overall">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r4-overall" name="overall" value="4" onChange={this.update("overall_rating")} />
+                                <label htmlFor="r4-overall">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r3-overall" />
-                            <label htmlFor="r3-overall">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r3-overall" name="overall" value="3" onChange={this.update("overall_rating")} />
+                                <label htmlFor="r3-overall">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r4-overall" />
-                            <label htmlFor="r4-overall">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
 
-                            <input className="star-radio" type="radio" id="r5-overall" />
-                            <label htmlFor="r5-overall">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r2-overall" name="overall" value="2" onChange={this.update("overall_rating")} />
+                                <label htmlFor="r2-overall">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+
+                                <input className="star-radio" type="radio" id="r1-overall" name="overall" value="1" onChange={this.update("overall_rating")} />
+                                <label htmlFor="r1-overall">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </label>
@@ -94,40 +109,42 @@ class CreateReviewForm extends React.Component {
                     <div className="review-category">
                         <div className="review-category-name">Food</div>
                         <div className="rating-stars-container">
-                            <input className="star-radio" type="radio" id="r1-food" />
-                            <label htmlFor="r1-food">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                            <div className="rating-container">
+                                <input className="star-radio" type="radio" id="r5-food" name="food" value="5" onChange={this.update("food_rating")} />
+                                <label htmlFor="r5-food">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                                
+                                <input className="star-radio" type="radio" id="r4-food" name="food" value="4" onChange={this.update("food_rating")} />
+                                <label htmlFor="r4-food">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r2-food" />
-                            <label htmlFor="r2-food">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r3-food" name="food" value="3" onChange={this.update("food_rating")} />
+                                <label htmlFor="r3-food">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r3-food" />
-                            <label htmlFor="r3-food">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r2-food" name="food" value="2" onChange={this.update("food_rating")} />
+                                <label htmlFor="r2-food">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r4-food" />
-                            <label htmlFor="r4-food">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
-
-                            <input className="star-radio" type="radio" id="r5-food" />
-                            <label htmlFor="r5-food">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r1-food" name="food" value="1" onChange={this.update("food_rating")} />
+                                <label htmlFor="r1-food">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </label>
@@ -136,40 +153,42 @@ class CreateReviewForm extends React.Component {
                     <div className="review-category">
                         <div className="review-category-name">Service</div>
                         <div className="rating-stars-container">
-                            <input className="star-radio" type="radio" id="r1-service" />
-                            <label htmlFor="r1-service">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                            <div className="rating-container">
+                                <input className="star-radio" type="radio" id="r5-service" name="service" value="5" onChange={this.update("service_rating")} />
+                                <label htmlFor="r5-service">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r2-service" />
-                            <label htmlFor="r2-service">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r4-service" name="service" value="4" onChange={this.update("service_rating")} />
+                                <label htmlFor="r4-service">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r3-service" />
-                            <label htmlFor="r3-service">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r3-service" name="service" value="3" onChange={this.update("service_rating")} />
+                                <label htmlFor="r3-service">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r4-service" />
-                            <label htmlFor="r4-service">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r2-service" name="service" value="2" onChange={this.update("service_rating")} />
+                                <label htmlFor="r2-service">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r5-service" />
-                            <label htmlFor="r5-service">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r1-service" name="service" value="1" onChange={this.update("service_rating")} />
+                                <label htmlFor="r1-service">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </label>
@@ -178,40 +197,42 @@ class CreateReviewForm extends React.Component {
                     <div className="review-category">
                         <div className="review-category-name">Ambience</div>
                         <div className="rating-stars-container">
-                            <input className="star-radio" type="radio" id="r1-ambience" />
-                            <label htmlFor="r1-ambience">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                            <div className="rating-container">
+                                <input className="star-radio" type="radio" id="r5-ambience" name="ambience" value="5" onChange={this.update("ambience_rating")} />
+                                <label htmlFor="r5-ambience">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                                
+                                <input className="star-radio" type="radio" id="r4-ambience" name="ambience" value="4" onChange={this.update("ambience_rating")} />
+                                <label htmlFor="r4-ambience">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r2-ambience" />
-                            <label htmlFor="r2-ambience">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r3-ambience" name="ambience" value="3" onChange={this.update("ambience_rating")} />
+                                <label htmlFor="r3-ambience">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r3-ambience" />
-                            <label htmlFor="r3-ambience">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r2-ambience" name="ambience" value="2" onChange={this.update("ambience_rating")} />
+                                <label htmlFor="r2-ambience">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r4-ambience" />
-                            <label htmlFor="r4-ambience">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
-
-                            <input className="star-radio" type="radio" id="r5-ambience" />
-                            <label htmlFor="r5-ambience">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r1-ambience" name="ambience" value="1" onChange={this.update("ambience_rating")} />
+                                <label htmlFor="r1-ambience">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </label>
@@ -220,44 +241,49 @@ class CreateReviewForm extends React.Component {
                     <div className="review-category">
                         <div className="review-category-name">Value</div>
                         <div className="rating-stars-container">
-                            <input className="star-radio" type="radio" id="r1-value" />
-                            <label htmlFor="r1-value">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                            <div className="rating-container">
+                                <input className="star-radio" type="radio" id="r5-value" name="value" value="5" onChange={this.update("value_rating")} />
+                                <label htmlFor="r5-value">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r2-value" />
-                            <label htmlFor="r2-value">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r4-value" name="value" value="4" onChange={this.update("value_rating")} />
+                                <label htmlFor="r4-value">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r3-value" />
-                            <label htmlFor="r3-value">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r3-value" name="value" value="3" onChange={this.update("value_rating")} />
+                                <label htmlFor="r3-value">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r4-value" />
-                            <label htmlFor="r4-value">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r2-value" name="value" value="2" onChange={this.update("value_rating")} />
+                                <label htmlFor="r2-value">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
 
-                            <input className="star-radio" type="radio" id="r5-value" />
-                            <label htmlFor="r5-value">
-                                <svg className="star">
-                                    <use xlinkHref="#star"></use>
-                                </svg>
-                            </label>
+                                <input className="star-radio" type="radio" id="r1-value" name="value" value="1" onChange={this.update("value_rating")} />
+                                <label htmlFor="r1-value">
+                                    <svg className="star">
+                                        <use xlinkHref="#star"></use>
+                                    </svg>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </label>
-
+                <textarea className="review-text" placeholder="Your review must be at least 50 characters" onChange={this.update("body")} ></textarea>
+                <div className="submit-review-button">
+                    <button>Submit review</button>
+                </div>
             </form>
         </div>
         )

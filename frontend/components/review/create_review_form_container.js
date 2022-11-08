@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    submitReview: (review) => dispatch(createReview(review)),
+    submitReview: (review, restaurantId) => dispatch(createReview(review, restaurantId)),
     fetchRestaurant: () => dispatch(fetchRestaurant(ownProps.match.params.restaurantId))
 })
 

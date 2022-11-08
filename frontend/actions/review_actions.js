@@ -24,8 +24,8 @@ export const fetchReview = (reviewId) => dispatch => {
         .then(review => dispatch(receiveReview(review)))
 }
 
-export const createReview = (review) => dispatch => {
-    return APIUtil.createReview(review)
+export const createReview = (review, restaurantId) => dispatch => {
+    return APIUtil.createReview(review, restaurantId)
         .then(review => dispatch(receiveReview(review)))
 }
 

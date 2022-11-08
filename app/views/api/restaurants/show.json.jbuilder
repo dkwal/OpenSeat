@@ -3,7 +3,7 @@ json.extract! @restaurant, :id, :name, :description, :address, :phone_number, :m
 json.reviews do
     @restaurant.reviews.each do |review|
         json.set! review.id do 
-            json.extract! review, :id, :body, :overall_rating, :food_rating, :service_rating, :ambience_rating
+            json.extract! review, :id, :body, :overall_rating, :food_rating, :service_rating, :ambience_rating, :value_rating
         end
     end
 end

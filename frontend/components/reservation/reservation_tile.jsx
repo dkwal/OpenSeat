@@ -98,7 +98,7 @@ class ReservationTile extends React.Component {
                             </select>
                         </div>
                     </div>
-                    <div className="reservation-button-container">
+                    <div className="red-button-container">
                         <button>Find a time</button>
                     </div>
                 </div>
