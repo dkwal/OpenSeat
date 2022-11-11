@@ -6,16 +6,23 @@ class UserProfile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            reservations: []
+            reservations: [],
+            reviews: []
         };
     }
     
     componentDidMount() {
         this.props.fetchReservations(this.props.match.params.user_id)
-            .then(res => this.setState({ reservations: res.reservations}))
+            .then(res1 => this.props.fetchReviews(this.props.match.params.user_id)
+                .then(res2 => this.setState({
+                    reservations: res1.reservations,
+                    reviews: res2.reviews
+        })));
+
     }
 
     render() {
+        const userReviews = Object.values(this.state.reviews);
         const upcomingReservations = Object.values(this.state.reservations).filter( reservation => (
             !isDateInPast(reservation.date, reservation.time)
         ));
@@ -25,7 +32,7 @@ class UserProfile extends React.Component {
                 <ul>
                     {upcomingReservations.map( reservation => (
                         <li key={reservation.id}>
-                            <ProfileReservation reservation={reservation}/>
+                            <ProfileReservation reservation={reservation} reviews={userReviews}/>
                         </li>
                     ))}
                 </ul>
@@ -41,12 +48,13 @@ class UserProfile extends React.Component {
                 <ul>
                     {pastReservations.map( reservation => (
                         <li key={reservation.id}>
-                            <ProfileReservation reservation={reservation}/>
+                            <ProfileReservation reservation={reservation} reviews={userReviews} />
                         </li>
                     ))}
                 </ul>
             </div>
         );
+
         return (
             <div>
                 {upcomingReservationsList}

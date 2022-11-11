@@ -7,6 +7,7 @@ class ProfileReservation extends React.Component {
         super(props);
         this.updateToReviewPath = this.updateToReviewPath.bind(this);
         this.updateToModifyResPath = this.updateToModifyResPath.bind(this);
+        this.updateToModifyReviewPath = this.updateToModifyReviewPath.bind(this);
         this.updatePath = this.updatePath.bind(this);
     }
 
@@ -21,10 +22,31 @@ class ProfileReservation extends React.Component {
         this.props.history.push(path);
     }
 
+    updateToModifyReviewPath() {
+        const userReviews = Object.values(this.props.reviews);
+        let reviewId;
+        for (let i = 0; i < userReviews.length; i++) {
+            if (userReviews[i].restaurant_id === this.props.reservation.restaurant.id) {
+                reviewId = userReviews[i].id;
+            }
+        }
+        const path = `/restaurants/${this.props.reservation.restaurant.id}/reviews/${reviewId}`;
+        this.props.history.push(path);
+    }
+    
     updatePath() {
         const date = this.props.reservation.date;
         const time = this.props.reservation.time;
         if (isDateInPast(date, time)) {
+            console.log(this.props);
+            if (this.props.reviews) {
+                const userReviews = this.props.reviews;
+                for (let i = 0; i < userReviews.length; i++) {
+                    if (userReviews[i].restaurant_id === this.props.reservation.restaurant.id) {
+                        return this.updateToModifyReviewPath;
+                    }
+                }
+            }
             return this.updateToReviewPath;
         } else {
             return this.updateToModifyResPath;

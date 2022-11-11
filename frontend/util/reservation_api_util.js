@@ -1,7 +1,7 @@
-export const fetchReservations = (user_id) => (
+export const fetchReservations = (userId) => (
     $.ajax({
         method: 'GET',
-        url: `/api/users/${user_id}/reservations`
+        url: `/api/users/${userId}/reservations`
     })
 )
 
