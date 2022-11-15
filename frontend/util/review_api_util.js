@@ -20,10 +20,10 @@ export const createReview = (review, restaurantId) => (
     })
 )
 
-export const updateReview = (review) => (
+export const updateReview = (review, restaurantId) => (
     $.ajax({
         method: 'PATCH',
-        url: `/api/reviews/${review.id}`,
+        url: `/api/restaurants/${restaurantId}/reviews/${review.id}`,
         data: { review }
     })
 )

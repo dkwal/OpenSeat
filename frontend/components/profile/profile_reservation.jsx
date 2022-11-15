@@ -23,7 +23,7 @@ class ProfileReservation extends React.Component {
     }
 
     updateToModifyReviewPath() {
-        const userReviews = Object.values(this.props.reviews);
+        const userReviews = this.props.reviews;
         let reviewId;
         for (let i = 0; i < userReviews.length; i++) {
             if (userReviews[i].restaurant_id === this.props.reservation.restaurant.id) {
@@ -38,7 +38,6 @@ class ProfileReservation extends React.Component {
         const date = this.props.reservation.date;
         const time = this.props.reservation.time;
         if (isDateInPast(date, time)) {
-            console.log(this.props);
             if (this.props.reviews) {
                 const userReviews = this.props.reviews;
                 for (let i = 0; i < userReviews.length; i++) {

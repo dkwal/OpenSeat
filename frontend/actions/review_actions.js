@@ -40,8 +40,8 @@ export const createReview = (review, restaurantId) => dispatch => {
         .then(review => dispatch(receiveReview(review)))
 }
 
-export const updateReview = (review) => dispatch => {
-    return APIUtil.updateReview(review)
+export const updateReview = (review, restaurantId) => dispatch => {
+    return APIUtil.updateReview(review, restaurantId)
         .then(review => dispatch(receiveReview(review)))
 }
 

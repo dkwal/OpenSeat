@@ -11,6 +11,8 @@ import CancelReservationConfirmationContainer from "./reservation/cancel_reserva
 import { ProtectedRoute, AuthRoute } from "../util/route_util";
 import UserProfileContainer from "./profile/user_profile_container";
 import CreateReviewFormContainer from "./review/create_review_form_container";
+import EditReviewFormContainer from "./review/edit_review_form_container";
+import DeleteReviewConfirmationContainer from "./review/delete_review_confirmation_container";
 
 const App = () => (
     <div>
@@ -29,7 +31,9 @@ const App = () => (
             <Route exact path="/reservations/:reservationId" component={ReservationShowContainer}/>
             <Route path="/reservations/:reservationId/cancel" component={CancelReservationConfirmationContainer}/>
             <ProtectedRoute path="/users/:user_id/profile" component={UserProfileContainer}/>
-            <ProtectedRoute path="/restaurants/:restaurantId/reviews" component={CreateReviewFormContainer}/>
+            <ProtectedRoute exact path="/restaurants/:restaurantId/reviews" component={CreateReviewFormContainer}/>
+            <ProtectedRoute path="/restaurants/:restaurantId/reviews/:reviewId" component={EditReviewFormContainer}/>
+            <ProtectedRoute path="/reviews/:reviewId/delete" component={DeleteReviewConfirmationContainer}/>
         </Switch>
     </div>
 )
