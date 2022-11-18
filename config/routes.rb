@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resources :reservations, only: [:create, :show, :update, :destroy]
     resources :reviews, only: [:show, :destroy]
+    resources :favorites, only: [:create, :destroy]
   end
   root to: "static_pages#root"
 end
