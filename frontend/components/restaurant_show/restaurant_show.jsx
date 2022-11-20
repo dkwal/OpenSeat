@@ -5,10 +5,37 @@ import ReviewShow from "../review/review_show";
 class RestaurantShow extends React.Component {
     constructor(props) {
         super(props);
+        this.saveRestaurant = this.saveRestaurant.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchRestaurant();
+        if (this.props.currentUser) {
+            this.props.fetchFavorites(this.props.currentUser.id);
+        }
+    }
+
+    saveRestaurant() {
+        const favorites = this.props.userFavorites;
+        const userId = this.props.currentUser.id;
+        const restaurantId = this.props.restaurant.id;
+        const newFavorite = {
+            user_id: userId,
+            restaurant_id: restaurantId
+        };
+
+        let existingFavorite;
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].user_id === this.props.currentUser.id) {
+                existingFavorite = favorites[i];
+                break;
+            }
+        }
+        if (existingFavorite) {
+            return () => this.props.deleteFavorite(existingFavorite.id);
+        } else {
+            return () => this.props.createFavorite(newFavorite);
+        }
     }
     
     render() {
@@ -24,7 +51,11 @@ class RestaurantShow extends React.Component {
         }
         return(
         <div className="restaurant-show">
-            <img src={restaurant.photourl}></img>
+            <div className="restaurant-banner">
+                <img src={restaurant.photourl}></img>
+                <button className="favorite-restaurant" onClick={this.saveRestaurant()}>Save this restaurant</button>
+            </div>
+
             <div className="restaurant-left-col">
                 <ul className="restaurant-section-links">
                     <li>Overview</li>

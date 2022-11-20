@@ -1,4 +1,8 @@
 class Api::FavoritesController < ApplicationController
+    def index
+        @favorites = Favorite.where(user_id: params[:user_id])
+    end
+    
     def create
         @favorite = Favorite.new(favorite_params)
         if @favorite.save
