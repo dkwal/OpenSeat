@@ -1,7 +1,7 @@
 databases:
   - name: OpenSeat
     databaseName: OpenSeat_development
-    user: danielwallace
+    user:
 
 services:
   - type: web
