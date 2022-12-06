@@ -9,7 +9,8 @@ services:
     env: ruby
     plan: free
     buildCommand: "bundle install"
-    startCommand: "npm install npm start"
+    buildCommand: "npm install"
+    startCommand: "npm start"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
