@@ -8,8 +8,8 @@ services:
     name: OpenSeat
     env: ruby
     plan: free
-    buildCommand: "./bin/render-build.sh"
-    startCommand: "bundle exec puma -C config/puma.rb"
+    buildCommand: "bundle install"
+    startCommand: "npm start"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
