@@ -1,6 +1,5 @@
 databases:
   - name: OpenSeat
-    databaseName: OpenSeat
     user:
 
 services:
