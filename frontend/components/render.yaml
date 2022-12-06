@@ -1,0 +1,18 @@
+databases:
+  - name: OpenSeat
+    databaseName: OpenSeat_development
+    user: danielwallace
+
+services:
+  - type: web
+    name: OpenSeat
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: danielwallace:Spaffers1@localhost/OpenSeat_development
+        fromDatabase:
+          name: OpenSeat
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false

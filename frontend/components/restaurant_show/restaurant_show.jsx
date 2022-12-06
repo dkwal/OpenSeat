@@ -6,35 +6,74 @@ class RestaurantShow extends React.Component {
     constructor(props) {
         super(props);
         this.saveRestaurant = this.saveRestaurant.bind(this);
+        this.eventListenerCreated = false; // needed to ensure only one event listener is created
     }
 
-    componentDidMount() {
-        this.props.fetchRestaurant();
-        if (this.props.currentUser) {
-            this.props.fetchFavorites(this.props.currentUser.id);
+    
+    isFavorited(restaurantId) {
+        const favorites = this.props.userFavorites;
+        
+        for (let i = 0; i < favorites.length; i++) {
+            if (favorites[i].restaurant_id === restaurantId) {
+                return favorites[i];
+            }
         }
     }
-
+    
+    initFavButtonText() {
+         const button = document.getElementById("fav-button");
+         const restaurant = this.props.restaurant;
+         let buttonText = "Save this restaurant";
+         if (this.isFavorited(restaurant.id)) {
+             buttonText = "Restaurant saved!";
+        }
+        button.innerHTML = buttonText;
+    }
+    
+    componentDidMount() {
+        this.props.fetchRestaurant()
+        .then(() => {
+            if (this.props.currentUser) {
+                this.props.fetchFavorites(this.props.currentUser.id)
+                .then(() => {
+                    this.initFavButtonText();
+                })
+            }
+        })
+    }
+    
     saveRestaurant() {
-        const favorites = this.props.userFavorites;
-        const userId = this.props.currentUser.id;
+        // create event listener to switch button text
+        const button = document.getElementById("fav-button");
+        if (button && !this.eventListenerCreated) {
+            this.eventListenerCreated = true;
+            button.addEventListener('click', () => {
+                const startingText = "Save this restaurant";
+                if (button.innerHTML.includes(startingText)) {
+                    button.innerHTML = "Restaurant saved!";
+                } else {
+                    button.innerHTML = startingText;
+                }
+            })
+        }
+
         const restaurantId = this.props.restaurant.id;
+        const userId = this.props.currentUser.id;
         const newFavorite = {
             user_id: userId,
             restaurant_id: restaurantId
         };
-
-        let existingFavorite;
-        for (let i = 0; i < favorites.length; i++) {
-            if (favorites[i].user_id === this.props.currentUser.id) {
-                existingFavorite = favorites[i];
-                break;
-            }
-        }
+        
+        const existingFavorite = this.isFavorited(restaurantId);
+        
         if (existingFavorite) {
-            return () => this.props.deleteFavorite(existingFavorite.id);
+            return () => {
+                this.props.deleteFavorite(existingFavorite.id);
+            }
         } else {
-            return () => this.props.createFavorite(newFavorite);
+            return () => {
+                this.props.createFavorite(newFavorite);
+            }
         }
     }
     
@@ -43,6 +82,7 @@ class RestaurantShow extends React.Component {
         if (!this.props.restaurant) {
             return null;
         }
+        
         let reviews;
         if (!restaurant.reviews) {
             reviews = [];
@@ -53,7 +93,7 @@ class RestaurantShow extends React.Component {
         <div className="restaurant-show">
             <div className="restaurant-banner">
                 <img src={restaurant.photourl}></img>
-                <button className="favorite-restaurant" onClick={this.saveRestaurant()}>Save this restaurant</button>
+                <button id="fav-button" className="favorite-restaurant" onClick={this.saveRestaurant()}></button>
             </div>
 
             <div className="restaurant-left-col">
