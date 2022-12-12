@@ -43,8 +43,16 @@ class RestaurantShow extends React.Component {
     }
     
     saveRestaurant() {
-        // create event listener to switch button text
         const button = document.getElementById("fav-button");
+
+        // check if user is logged in
+        if (!this.props.currentUser) {
+            if (button) {
+                button.innerHTML = "Save this restaurant";
+            }
+            return this.props.openModal;
+        }
+        // create event listener to switch button text
         if (button && !this.eventListenerCreated) {
             this.eventListenerCreated = true;
             button.addEventListener('click', () => {
@@ -56,6 +64,7 @@ class RestaurantShow extends React.Component {
                 }
             })
         }
+
 
         const restaurantId = this.props.restaurant.id;
         const userId = this.props.currentUser.id;
