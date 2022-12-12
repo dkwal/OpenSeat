@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: OpenSeat_production
-  username: OpenSeat
-  password: <%= ENV['OPENSEAT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
