@@ -7,6 +7,9 @@ class RestaurantShow extends React.Component {
         super(props);
         this.saveRestaurant = this.saveRestaurant.bind(this);
         this.eventListenerCreated = false; // needed to ensure only one event listener is created
+        this.menuRef = React.createRef();
+        this.topRef = React.createRef();
+        this.reviewsRef = React.createRef();
     }
 
     
@@ -86,6 +89,10 @@ class RestaurantShow extends React.Component {
         }
     }
     
+    scrollPage(ref) {
+        return () => ref.current.scrollIntoView();
+    }
+
     render() {
         const restaurant = this.props.restaurant;
         if (!this.props.restaurant) {
@@ -99,7 +106,7 @@ class RestaurantShow extends React.Component {
             reviews = Object.values(restaurant.reviews)
         }
         return(
-        <div className="restaurant-show">
+        <div className="restaurant-show" ref={this.topRef}>
             <div className="restaurant-banner">
                 <img src={restaurant.photourl}></img>
                 <button id="fav-button" className="favorite-restaurant" onClick={this.saveRestaurant()}></button>
@@ -107,9 +114,9 @@ class RestaurantShow extends React.Component {
 
             <div className="restaurant-left-col">
                 <ul className="restaurant-section-links">
-                    <li>Overview</li>
-                    <li>Menu</li>
-                    <li>Reviews</li>
+                    <li onClick={this.scrollPage(this.topRef)}>Overview</li>
+                    <li onClick={this.scrollPage(this.menuRef)}>Menu</li>
+                    <li onClick={this.scrollPage(this.reviewsRef)}>Reviews</li>
                 </ul>
                 <div className="restaurant-show-name">{restaurant.name}</div>
                 <div className="restaurant-details">
@@ -121,7 +128,7 @@ class RestaurantShow extends React.Component {
                     </ul>
                 </div>
                 <div className="restaurant-description">{restaurant.description}</div>
-                <div className="reviews-header">What people are saying</div>
+                <div className="reviews-header" ref={this.reviewsRef}>What people are saying</div>
                 <ul className="reviews-index">
                     {reviews.map( review => (
                         <li key={review.id}>
@@ -139,7 +146,7 @@ class RestaurantShow extends React.Component {
                     <li className="additional-info-item">Phone Number</li>
                     <li>{restaurant.phone_number}</li>
                     <li className="additional-info-item">Menu</li>
-                    <li>{restaurant.menu}</li>
+                    <li ref={this.menuRef}>{restaurant.menu}</li>
                 </ul>
             </div>
         </div>
