@@ -81,3 +81,18 @@ export const isDateInPast = (date, time) => {
         }
     }
 }
+
+export const convertDateToString = (date) => {
+    const today = date;
+    const year = today.getFullYear();
+    let month = today.getMonth() + 1;
+    if (month < 10) {
+        month = `0${month}`;
+    }
+    let day = today.getDate();
+    if (day < 10) {
+        day = `0${day}`;
+    }
+    // return `${month}${day}${year.toString().substring(2, 4)}`
+    return `${year}-${month}-${day}`
+}

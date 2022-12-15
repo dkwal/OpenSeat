@@ -1,29 +1,17 @@
 import React from "react";
+import MinDatePicker from "../min_date_picker";
+import { convertDateToString } from "../../util/date_time_converter";
 
 class ReservationTile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             party_size: 2,
-            date: this.todaysDate(),
+            date: convertDateToString(new Date()),
             time: "1930"
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    todaysDate() {
-        const today = new Date();
-        const year = today.getFullYear();
-        let month = today.getMonth() + 1;
-        if (month < 10) {
-            month = `0${month}`;
-        }
-        let day = today.getDate();
-        if (day < 10) {
-            day = `0${day}`;
-        }
-        // return `${month}${day}${year.toString().substring(2, 4)}`
-        return `${year}-${month}-${day}`
+        this.updateDate = this.updateDate.bind(this);
     }
 
     handleSubmit(e) {
@@ -34,6 +22,11 @@ class ReservationTile extends React.Component {
     update(field) {
         return e => this.setState({[field]: e.currentTarget.value})
     }
+
+    updateDate(date) {
+            this.setState({date: convertDateToString(date)});
+            console.log("selected date: ", date);
+    }   
 
     render() {
         let userId;
@@ -67,7 +60,7 @@ class ReservationTile extends React.Component {
                     <div className="date-and-time">
                         <div className="reservation-date">
                             <div className="reservation-detail-header">Date</div>
-                            <input type="date" value={this.state.date} onChange={this.update("date")} />
+                            <MinDatePicker updateDate={this.updateDate}/>
                         </div>
                         <div className="reservation-time">
                             <div className="reservation-detail-header">Time</div>
