@@ -32,7 +32,8 @@ class EditReviewForm extends React.Component {
     componentDidMount() {
         this.props.fetchReview()
             .then(response => (this.setState({review: Object.values(response.review)[0]})))
-
+        this.props.fetchRestaurant(this.props.match.params.restaurantId)
+            .then(response => (this.setState({restaurant: response.restaurant})))
     }
 
     update(field) {

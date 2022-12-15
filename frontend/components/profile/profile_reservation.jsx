@@ -9,6 +9,7 @@ class ProfileReservation extends React.Component {
         this.updateToModifyResPath = this.updateToModifyResPath.bind(this);
         this.updateToModifyReviewPath = this.updateToModifyReviewPath.bind(this);
         this.updatePath = this.updatePath.bind(this);
+        this.reservationText = (<div className="reservation-text">Placeholder</div>);
     }
 
     updateToReviewPath() {
