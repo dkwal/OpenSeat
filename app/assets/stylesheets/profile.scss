@@ -7,6 +7,12 @@
     margin-left: 32px;
     padding: 16px;
     width: 60%;
+    cursor: pointer;
+}
+
+.profile-reservation-text {
+    display: flex;
+    flex-direction: column;
 }
 
 .reservation-img {

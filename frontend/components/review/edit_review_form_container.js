@@ -19,7 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => ({
     updateReview: (review) => dispatch(updateReview(review)),
     fetchReview: () => dispatch(fetchReview(ownProps.match.params.reviewId)),
-    fetchRestaurant: (id) => dispatch(fetchRestaurant(id))
+    fetchRestaurant: () => dispatch(fetchRestaurant(ownProps.match.params.restaurantId))
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EditReviewForm));

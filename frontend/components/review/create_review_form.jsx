@@ -29,7 +29,6 @@ class CreateReviewForm extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props);
         this.props.fetchRestaurant()
             .then(response => this.setState({restaurant: response.restaurant}))
     }

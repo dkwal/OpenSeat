@@ -43,12 +43,15 @@ class ProfileReservation extends React.Component {
                 const userReviews = this.props.reviews;
                 for (let i = 0; i < userReviews.length; i++) {
                     if (userReviews[i].restaurant_id === this.props.reservation.restaurant.id) {
+                        this.reservationText = (<div className="reservation-text">Click to update your review</div>);
                         return this.updateToModifyReviewPath;
                     }
                 }
             }
+            this.reservationText = (<div className="reservation-text">Click to submit a review</div>);
             return this.updateToReviewPath;
         } else {
+            this.reservationText = (<div className="reservation-text">Click to modify your reservation</div>)
             return this.updateToModifyResPath;
         }
     }
@@ -57,12 +60,15 @@ class ProfileReservation extends React.Component {
         return (
             <div className="profile-reservation" onClick={this.updatePath()}>
                 <img className="reservation-img" src={this.props.reservation.photourl} />
-                <ul className="reservation-info">
-                    <li className="profile-reservation-restaurant">{this.props.reservation.restaurant.name}</li>
-                    <li className="profile-reservation-date">{this.props.reservation.date}</li>
-                    <li className="profile-reservation-time">{this.props.reservation.time}</li>
-                    <li className="profile-reservation-size">{this.props.reservation.party_size}</li>
-                </ul>
+                <div className="profile-reservation-text">
+                    <ul className="reservation-info">
+                        <li className="profile-reservation-restaurant">{this.props.reservation.restaurant.name}</li>
+                        <li className="profile-reservation-date">{this.props.reservation.date}</li>
+                        <li className="profile-reservation-time">{this.props.reservation.time}</li>
+                        <li className="profile-reservation-size">{this.props.reservation.party_size}</li>
+                    </ul>
+                    {this.reservationText}
+                </div>
             </div>
         )
     }
