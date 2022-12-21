@@ -96,3 +96,12 @@ export const convertDateToString = (date) => {
     // return `${month}${day}${year.toString().substring(2, 4)}`
     return `${year}-${month}-${day}`
 }
+
+export const createReadableDateTime = (dateStr, timeStr) => {
+    const date = new Date(dateStr).toDateString();
+    const parts = date.split(" ");
+
+    return parts[0] + ", " + parts[1] + " " + parts[2] + " at " + timeStr;
+
+    
+}

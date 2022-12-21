@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { createReadableDateTime } from "../../util/date_time_converter";
 
 class ReservationShow extends React.Component {
     constructor(props) {
@@ -16,14 +17,17 @@ class ReservationShow extends React.Component {
             return null;
         }
         return (
-            <div className="reservation-details">
-                <Link to={`/reservations/${reservation.id}/edit`}>Modify</Link>
-                <Link to={`/reservations/${reservation.id}/cancel`}>Cancel</Link>
-                <ul>
-                    <li>{reservation.date}</li>
-                    <li>{reservation.time}</li>
-                    <li>{reservation.party_size}</li>
-                </ul>
+            <div className="res-details-container">
+                <img className="reservation-img" src={reservation.photourl} />
+                <div className="reservation-details">
+                    <div className="confirm-message">Reservation Confirmed</div>
+                    <div className="confirm-res-info">
+                        <div>{reservation.party_size} (Standard Seating)</div>
+                        <div>{createReadableDateTime(reservation.date, reservation.time)}</div>
+                    </div>
+                    <Link className="modify-link" to={`/reservations/${reservation.id}/edit`}>Modify</Link>
+                    <Link to={`/reservations/${reservation.id}/cancel`}>Cancel</Link>
+                </div>
             </div>
         )
     }

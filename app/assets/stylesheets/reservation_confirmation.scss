@@ -1,0 +1,29 @@
+.confirm-res-info {
+    display: flex;
+    flex-direction: row;
+}
+
+.confirm-res-info > div {
+    margin-right: 16px;
+}
+
+.reservation-details > * {
+    padding: 0px 16px;
+    margin: 16px 0px;
+}
+
+.reservation-details > a {
+    text-decoration: none;
+    color: #da3743;
+}
+
+.res-details-container {
+    display: flex;
+}
+.res-details-container > img {
+    margin: 16px;
+}
+
+.modify-link {
+    border-right: 1px solid lightgray;
+}

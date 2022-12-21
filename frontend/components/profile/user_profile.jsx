@@ -26,34 +26,54 @@ class UserProfile extends React.Component {
         const upcomingReservations = Object.values(this.state.reservations).filter( reservation => (
             !isDateInPast(reservation.date, reservation.time)
         ));
-        const upcomingReservationsList = (
-            <div>
-                <h2>Upcoming Reservations</h2>
-                <ul>
-                    {upcomingReservations.map( reservation => (
-                        <li key={reservation.id}>
-                            <ProfileReservation reservation={reservation} reviews={userReviews}/>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        );
+        let upcomingReservationsList;
+        if (upcomingReservations.length === 0) {
+            upcomingReservationsList = (
+                <div>
+                    <h2>Upcoming Reservations</h2>
+                    <div>You have no upcoming reservations.</div>
+                </div>
+            );
+        } else {
+            upcomingReservationsList = (
+                <div>
+                    <h2>Upcoming Reservations</h2>
+                    <ul>
+                        {upcomingReservations.map( reservation => (
+                            <li key={reservation.id}>
+                                <ProfileReservation reservation={reservation} reviews={userReviews}/>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
         
         const pastReservations = Object.values(this.state.reservations).filter( reservation => (
             isDateInPast(reservation.date, reservation.time)
         ));
-        const pastReservationsList = (
-            <div>
-                <h2>Past Reservations</h2>
-                <ul>
-                    {pastReservations.map( reservation => (
-                        <li key={reservation.id}>
-                            <ProfileReservation reservation={reservation} reviews={userReviews} />
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        );
+        let pastReservationsList;
+        if (pastReservations.length === 0) {
+            pastReservationsList = (
+                <div>
+                    <h2>Past Reservations</h2>
+                    <div>You have no past reservations.</div>
+                </div>
+            );
+        } else {
+            pastReservationsList = (
+                <div>
+                    <h2>Past Reservations</h2>
+                    <ul>
+                        {pastReservations.map( reservation => (
+                            <li key={reservation.id}>
+                                <ProfileReservation reservation={reservation} reviews={userReviews} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            );
+        }
 
         return (
             <div>
