@@ -14,6 +14,13 @@ class EditReservationForm extends React.Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.updateDate = this.updateDate.bind(this);
+        this.stateSnapshot = {  // needed to display info statically on page about current reservation so that it will not dynamically change when the user changes the state
+            party_size: 2,
+            time: "7:30 pm",
+            date: "2022-12-23",
+            photourl: "placeholder",
+            name: "restaurant"
+        };
     }
 
     handleSubmit(e) {
@@ -24,7 +31,10 @@ class EditReservationForm extends React.Component {
 
     componentDidMount() {
         this.props.fetchReservation()
-            .then(response => this.setState(Object.values(response.reservation)[0]))
+            .then(response => {
+                this.setState(Object.values(response.reservation)[0])
+                    .then(() => this.stateSnapshot = this.state)
+            })
     }
 
     update(field) {
@@ -48,7 +58,7 @@ class EditReservationForm extends React.Component {
     }
 
     render() {
-        const dateTime = createReadableDateTime(this.state.date, this.state.time).split(" at ");
+        const dateTime = createReadableDateTime(this.stateSnapshot.date, this.stateSnapshot.time).split(" at ");
         const date = dateTime[0];
         const time = dateTime[1];
         return (
@@ -69,7 +79,7 @@ class EditReservationForm extends React.Component {
                             </li>
                             <li>
                                 <i className="fa-regular fa-user"></i>
-                                {this.state.party_size} people (standard seating)
+                                {this.stateSnapshot.party_size} people (standard seating)
                             </li>
                         </ul>
                     </div>
