@@ -11,10 +11,19 @@ const ReservationConfirmation = ({ res }) => {
         <div className="res-details-container">
             <img className="reservation-img" src={reservation.photourl} />
             <div className="reservation-details">
-                <div className="confirm-message">Reservation Confirmed</div>
+                <div className="confirm-message">
+                    <i className="fa-solid fa-circle-check"></i>
+                    Reservation Confirmed
+                </div>
                 <div className="confirm-res-info">
-                    <div>{reservation.party_size} (Standard Seating)</div>
-                    <div>{createReadableDateTime(reservation.date, reservation.time)}</div>
+                    <div>
+                        <i className="fa-regular fa-user"></i>
+                        {reservation.party_size} (Standard Seating)
+                    </div>
+                    <div>
+                        <i className="fa-regular fa-calendar"></i>
+                        {createReadableDateTime(reservation.date, reservation.time)}
+                    </div>
                 </div>
                 <Link className="modify-link" to={`/reservations/${reservation.id}/edit`}>Modify</Link>
                 <Link to={`/reservations/${reservation.id}/cancel`}>Cancel</Link>

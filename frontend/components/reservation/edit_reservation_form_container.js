@@ -3,13 +3,12 @@ import EditReservationForm from "./edit_reservation_form";
 import { fetchReservation, updateReservation } from "../../actions/reservation_actions";
 import { withRouter } from "react-router-dom";
 
-const mapStateToProps = (state, ownProps) => ({
-    reservation: state.entities.reservations[ownProps.match.params.reservationId],
+const mapStateToProps = (state) => ({
     errors: state.errors.reservation
 })
 
-const mapDispatchToProps = (dispatch) => ({
-    fetchReservation: reservationId => dispatch(fetchReservation(reservationId)),
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    fetchReservation: () => dispatch(fetchReservation(ownProps.match.params.reservationId)),
     updateReservation: reservation => dispatch(updateReservation(reservation))
 })
 

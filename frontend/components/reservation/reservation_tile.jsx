@@ -24,8 +24,7 @@ class ReservationTile extends React.Component {
     }
 
     updateDate(date) {
-            this.setState({date: convertDateToString(date)});
-            console.log("selected date: ", date);
+        this.setState({date: convertDateToString(date)});
     }   
 
     render() {
@@ -39,7 +38,7 @@ class ReservationTile extends React.Component {
         <div className="reservation-tile">
             <form onSubmit={this.handleSubmit}>
                 <div className="make-reservation">Make a reservation</div>
-                <div className="reservation-details">
+                <div className="reservation-tile-details">
                     <div className="reservation-party">
                         <div className="reservation-detail-header">Party size</div>
                         <select value={this.state.party_size} onChange={this.update("party_size")}>
