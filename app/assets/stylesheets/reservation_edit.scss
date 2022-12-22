@@ -115,15 +115,14 @@
 }
 
 .react-datepicker-wrapper,
-.react-datepicker__input-container,
-.react-datepicker__input-container input {
+.react-datepicker__input-container {
     display: block;
     border: none;
     height: 100%;
     cursor: pointer;
 }
 
-.react-datepicker__input-container > input {
+.datepicker-edit-form input {
     border: none;
     height: 100%;
     width: 120px;

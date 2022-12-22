@@ -59,7 +59,7 @@ class ReservationTile extends React.Component {
                     <div className="date-and-time">
                         <div className="reservation-date">
                             <div className="reservation-detail-header">Date</div>
-                            <MinDatePicker updateDate={this.updateDate}/>
+                            <MinDatePicker style={"datepicker-res-tile"} updateDate={this.updateDate}/>
                         </div>
                         <div className="reservation-time">
                             <div className="reservation-detail-header">Time</div>

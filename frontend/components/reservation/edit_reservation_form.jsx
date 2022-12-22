@@ -83,7 +83,7 @@ class EditReservationForm extends React.Component {
                     <form onSubmit={this.handleSubmit}>
                         <div className="calendar-selector">
                             <i className="fa-regular fa-calendar"></i>
-                            <MinDatePicker updateDate={this.updateDate}/>
+                            <MinDatePicker style={"datepicker-edit-form"} updateDate={this.updateDate}/>
                         </div>
                         <div className="time-selector">
                             <i className="fa-regular fa-clock"></i>    

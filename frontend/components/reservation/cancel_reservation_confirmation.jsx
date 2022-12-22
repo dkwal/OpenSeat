@@ -1,4 +1,6 @@
 import React from "react";
+import { createReadableDateTime } from "../../util/date_time_converter";
+import { Link } from "react-router-dom";
 
 class CancelReservationConfirmation extends React.Component{
     constructor(props) {
@@ -9,23 +11,37 @@ class CancelReservationConfirmation extends React.Component{
     handleSubmit(e) {
         e.preventDefault();
         this.props.deleteReservation(this.props.reservation.id);
-        this.props.history.push("/");
+        if (this.props.user) {
+            this.props.history.push(`/users/${this.props.user.id}/profile`);
+        } else {
+            this.props.history.push("/");
+        }
     }
 
     render() {
+        const reservation = this.props.reservation;
         return (
-            <div>
-                <h2>Are you sure you want to cancel this reservation?</h2>
-                <ul>
-                    <li>{this.props.reservation.date}</li>
-                    <li>{this.props.reservation.time}</li>
-                    <li>{this.props.reservation.party_size}</li>
-                </ul>
-                <form onSubmit={this.handleSubmit}>
-                    <button>Cancel Reservation</button>
-                </form>
-
-    
+            <div className="res-details-container">
+                <img className="reservation-img" src={reservation.photourl} />
+                <div className="reservation-details">
+                    <div className="confirm-message">
+                        Are you sure you want to cancel this reservation?
+                    </div>
+                    <div className="confirm-res-info">
+                        <div>
+                            <i className="fa-regular fa-user"></i>
+                            {reservation.party_size} (Standard Seating)
+                        </div>
+                        <div>
+                            <i className="fa-regular fa-calendar"></i>
+                            {createReadableDateTime(reservation.date, reservation.time)}
+                        </div>
+                    </div>
+                    <form className="cancel-res-form" onSubmit={this.handleSubmit}>
+                        <button>Confirm cancellation</button>
+                        <Link to={`/reservations/${reservation.id}`}>Nevermind</Link>
+                    </form>
+                </div>
             </div>
         )
     }

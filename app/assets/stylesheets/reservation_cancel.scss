@@ -1,0 +1,23 @@
+.cancel-res-form {
+    display: flex;
+    align-items: center;
+}
+
+.cancel-res-form button {
+    background-color: #da3743;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    width: 100 px;
+    height: 100%;
+    padding: 8px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 48px;
+}
+
+.cancel-res-form a {
+    color: #da3743;
+    text-decoration: none;
+}

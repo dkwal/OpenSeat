@@ -4,7 +4,8 @@ import { deleteReservation } from "../../actions/reservation_actions";
 import CancelReservationConfirmation from "./cancel_reservation_confirmation";
 
 const mapStateToProps = (state, ownProps) => ({
-    reservation: state.entities.reservations[ownProps.match.params.reservationId]
+    reservation: state.entities.reservations[ownProps.match.params.reservationId],
+    user: Object.values(state.entities.users)[0]
 })
 
 const mapDispatchToProps = (dispatch) => ({

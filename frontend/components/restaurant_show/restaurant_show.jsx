@@ -10,6 +10,8 @@ class RestaurantShow extends React.Component {
         this.menuRef = React.createRef();
         this.topRef = React.createRef();
         this.reviewsRef = React.createRef();
+        this.bookmarkStyle = {};
+        this.bookmarkClass = "fa-regular";
     }
 
     
@@ -24,13 +26,18 @@ class RestaurantShow extends React.Component {
     }
     
     initFavButtonText() {
-         const button = document.getElementById("fav-button");
+         const buttonContent = document.getElementById("fav-button-text");
          const restaurant = this.props.restaurant;
          let buttonText = "Save this restaurant";
          if (this.isFavorited(restaurant.id)) {
-             buttonText = "Restaurant saved!";
+            buttonText = "Restaurant saved!";
+            this.bookmarkStyle = {
+                color: "#da3743"
+            };
+            this.bookmarkClass = "fa-solid";
         }
-        button.innerHTML = buttonText;
+        buttonContent.innerHTML = buttonText;
+        this.forceUpdate();
     }
     
     componentDidMount() {
@@ -46,24 +53,32 @@ class RestaurantShow extends React.Component {
     }
     
     saveRestaurant() {
-        const button = document.getElementById("fav-button");
+        const buttonContent = document.getElementById("fav-button-text");
 
         // check if user is logged in
         if (!this.props.currentUser) {
-            if (button) {
-                button.innerHTML = "Save this restaurant";
+            if (buttonContent) {
+                buttonContent.innerHTML = "Save this restaurant";
             }
             return this.props.openModal;
         }
         // create event listener to switch button text
-        if (button && !this.eventListenerCreated) {
+        if (buttonContent && !this.eventListenerCreated) {
             this.eventListenerCreated = true;
+            const button = document.getElementById("fav-button")
             button.addEventListener('click', () => {
                 const startingText = "Save this restaurant";
-                if (button.innerHTML.includes(startingText)) {
-                    button.innerHTML = "Restaurant saved!";
+                const bookmark = document.getElementById("bookmark");
+                if (buttonContent.innerHTML.includes(startingText)) {
+                    buttonContent.innerHTML = "Restaurant saved!";
+                    this.bookmarkStyle = {
+                        color: "#da3743"
+                    };
+                    this.bookmarkClass = "fa-solid";
                 } else {
-                    button.innerHTML = startingText;
+                    buttonContent.innerHTML = startingText;
+                    this.bookmarkStyle = {};
+                    this.bookmarkClass = "fa-regular";
                 }
             })
         }
@@ -109,7 +124,12 @@ class RestaurantShow extends React.Component {
         <div className="restaurant-show" ref={this.topRef}>
             <div className="restaurant-banner">
                 <img src={restaurant.photourl}></img>
-                <button id="fav-button" className="favorite-restaurant" onClick={this.saveRestaurant()}></button>
+                <button id="fav-button" className="favorite-restaurant" onClick={this.saveRestaurant()}>
+                    <div className="fav-button-content">
+                        <i id="bookmark" className={`${this.bookmarkClass} fa-bookmark`} style={this.bookmarkStyle}></i>
+                        <div id="fav-button-text"></div>
+                    </div>
+                </button>
             </div>
 
             <div className="restaurant-left-col">

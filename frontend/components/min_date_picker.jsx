@@ -8,6 +8,7 @@ const MinDatePicker = (props) => {
     return (
       <DatePicker
         selected={startDate}
+        wrapperClassName={props.style}
         onChange={(date) => {
           setStartDate(date);
           props.updateDate(date);
