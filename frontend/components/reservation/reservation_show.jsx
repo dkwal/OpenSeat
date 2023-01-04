@@ -20,6 +20,7 @@ class ReservationShow extends React.Component {
             <div className="res-details-container">
                 <img className="reservation-img" src={reservation.photourl} />
                 <div className="reservation-details">
+                    <h3>{reservation.name}</h3>
                     <div className="confirm-message">
                         <i className="fa-solid fa-circle-check"></i>
                         Reservation Confirmed

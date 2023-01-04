@@ -1,0 +1,77 @@
+.create-res-container {
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+
+.create-res-container > * {
+    margin: 16px 0px 16px 16px;
+}
+
+.create-res-container > h2 {
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.diner-details-header {
+    font-weight: bolder;
+    padding-bottom: 16px;
+}
+
+.first-and-last {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.first-and-last input {
+    padding: 12px 6px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    width: 45%;
+}
+
+.first-and-last input:hover {
+    border-color: black;
+}
+
+.phone-email {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.phone-email input {
+    padding: 12px 6px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    width: 45%;
+}
+
+.phone-email input:hover {
+    border-color: black;
+}
+
+.reservation-form-container {
+    width: 640.15 px;
+}
+
+.reservation-form-container button {
+    background-color: #da3743;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    width: 100%;
+    padding: 16px 0px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.disclaimer {
+    font-size: 10px;
+    margin-top: 8px;
+    width: 640.15px;
+}
