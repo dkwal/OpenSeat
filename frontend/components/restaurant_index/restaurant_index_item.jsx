@@ -13,15 +13,58 @@ class RestaurantIndexItem extends React.Component {
         this.props.history.push(path);
     }
 
+    colorStars() {
+        const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
+        let score = this.props.restaurant.avg_rating;
+        console.log(score);
+        let starCount = 0;
+        while (score >= 1) {
+            const rule = `#${restaurantName}-star-${starCount}:after {
+                font-family: FontAwesome;
+                content: "\\f005";
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: 100%;
+                overflow: hidden;
+                color: #da3743;
+            }`;
+            document.styleSheets[15].insertRule(rule);
+            starCount += 1;
+            score -= 1.0;
+        }
+        console.log(document.styleSheets[15]);
+        if (starCount < 4) {
+            document.styleSheets[15].insertRule(`#${restaurantName}-star-${starCount}:after {
+                font-family: FontAwesome;
+                content: "\\f005";
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: ${score * 100}%;
+                overflow: hidden;
+                color: #da3743;
+            }`);
+        }
+    }
+
     render() {
+        this.colorStars();
+        const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
         return(
             <div className="restaurant-index-item" onClick={this.updatePath}>
                 <img src={this.props.restaurant.photourl} />
                 <div className="restaurant-index-item-details">
                     <div className="restaurant-name">{this.props.restaurant.name}</div>
                     <div className="ratings-reviews">
-                        <div className="overall-rating">Overall rating</div>
-                        <div className="review-count">Num reviews</div>
+                        <div className="overall-rating">
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-0`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-1`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-2`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-3`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-4`}></i>
+                        </div>
+                        <div className="review-count">{this.props.restaurant.num_reviews} reviews</div>
                     </div>
                     <div className="restaurant-details">
                         <div className="food-type">{this.props.restaurant.food_type} &#11825; </div>
