@@ -1,6 +1,7 @@
 class Api::ReviewsController < ApplicationController
     def index
         @reviews = Review.where(user_id: params[:user_id])
+        @restaurant_reviews = Review.where(restaurant_id: params[:restaurant_id])
     end
 
     def create

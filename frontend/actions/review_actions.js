@@ -27,7 +27,12 @@ export const receiveReviewErrors = errors => ({
 
 export const fetchReviews = (userId) => dispatch => {
     return APIUtil.fetchReviews(userId)
-        .then(reviews => (dispatch(receiveReviews(reviews))))
+        .then(reviews => dispatch(receiveReviews(reviews)))
+}
+
+export const fetchRestaurantReviews = (restaurantId) => dispatch => {
+    return APIUtil.fetchRestaurantReviews(restaurantId)
+        .then(reviews => dispatch(receiveReviews(reviews)))
 }
 
 export const fetchReview = (reviewId) => dispatch => {

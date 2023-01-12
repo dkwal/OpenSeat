@@ -29,12 +29,4 @@ json.service_rating service_rating
 json.ambience_rating ambience_rating
 json.value_rating value_rating
 
-json.reviews do
-    @restaurant.reviews.each do |review|
-        json.set! review.id do 
-            json.extract! review, :id, :body, :overall_rating, :food_rating, :service_rating, :ambience_rating, :value_rating
-        end
-    end
-end
-
 json.photourl url_for(@restaurant.photo)

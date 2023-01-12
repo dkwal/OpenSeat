@@ -5,6 +5,13 @@ export const fetchReviews = (userId) => (
     })
 )
 
+export const fetchRestaurantReviews = restaurantId => (
+    $.ajax({
+        method: 'GET',
+        url: `/api/restaurants/${restaurantId}/reviews`
+    })
+)
+
 export const fetchReview = (id) => (
     $.ajax({
         method: 'GET',

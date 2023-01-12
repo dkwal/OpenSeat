@@ -49,6 +49,7 @@ class RestaurantShow extends React.Component {
                     this.initFavButtonText();
                 })
             }
+            this.props.fetchRestaurantReviews();
         })
     }
     
@@ -143,18 +144,13 @@ class RestaurantShow extends React.Component {
 
     render() {
         const restaurant = this.props.restaurant;
-        if (!this.props.restaurant) {
+        const reviews = this.props.reviews;
+        if (!this.props.restaurant || !this.props.reviews) {
             return null;
         }
         const restaurantName = restaurant.name.split(" ").join("").split("&").join("");
         this.colorStars();
 
-        let reviews;
-        if (!restaurant.reviews) {
-            reviews = [];
-        } else {
-            reviews = Object.values(restaurant.reviews)
-        }
         return(
         <div className="restaurant-show" ref={this.topRef}>
             <div className="restaurant-banner">
