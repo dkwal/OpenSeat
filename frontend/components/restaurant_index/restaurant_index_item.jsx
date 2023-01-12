@@ -16,7 +16,6 @@ class RestaurantIndexItem extends React.Component {
     colorStars() {
         const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
         let score = this.props.restaurant.avg_rating;
-        console.log(score);
         let starCount = 0;
         while (score >= 1) {
             const rule = `#${restaurantName}-star-${starCount}:after {
@@ -33,7 +32,6 @@ class RestaurantIndexItem extends React.Component {
             starCount += 1;
             score -= 1.0;
         }
-        console.log(document.styleSheets[15]);
         if (starCount < 4) {
             document.styleSheets[15].insertRule(`#${restaurantName}-star-${starCount}:after {
                 font-family: FontAwesome;

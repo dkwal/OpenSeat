@@ -108,12 +108,47 @@ class RestaurantShow extends React.Component {
         return () => ref.current.scrollIntoView();
     }
 
+    colorStars() {
+        const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
+        let score = this.props.restaurant.avg_rating;
+        let starCount = 0;
+        while (score >= 1) {
+            const rule = `#${restaurantName}-star-${starCount}:after {
+                font-family: FontAwesome;
+                content: "\\f005";
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: 100%;
+                overflow: hidden;
+                color: #da3743;
+            }`;
+            document.styleSheets[16].insertRule(rule);
+            starCount += 1;
+            score -= 1.0;
+        }
+        if (starCount < 4) {
+            document.styleSheets[16].insertRule(`#${restaurantName}-star-${starCount}:after {
+                font-family: FontAwesome;
+                content: "\\f005";
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: ${score * 100}%;
+                overflow: hidden;
+                color: #da3743;
+            }`);
+        }
+    }
+
     render() {
         const restaurant = this.props.restaurant;
         if (!this.props.restaurant) {
             return null;
         }
-        
+        const restaurantName = restaurant.name.split(" ").join("").split("&").join("");
+        this.colorStars();
+
         let reviews;
         if (!restaurant.reviews) {
             reviews = [];
@@ -141,18 +176,68 @@ class RestaurantShow extends React.Component {
                 <div className="restaurant-show-name">{restaurant.name}</div>
                 <div className="restaurant-details">
                     <ul className="details-list">
-                        <li>Rating</li>
-                        <li>Num Reviews</li>
-                        <li>{restaurant.price_range}</li>
-                        <li>{restaurant.food_type}</li>
+                        <li>
+                            <div className="overall-rating">
+                                <i className="fa-solid fa-star" id={`${restaurantName}-star-0`}></i>
+                                <i className="fa-solid fa-star" id={`${restaurantName}-star-1`}></i>
+                                <i className="fa-solid fa-star" id={`${restaurantName}-star-2`}></i>
+                                <i className="fa-solid fa-star" id={`${restaurantName}-star-3`}></i>
+                                <i className="fa-solid fa-star" id={`${restaurantName}-star-4`}></i>
+                            </div>
+                            {restaurant.avg_rating.toFixed(1)}
+                        </li>
+                        <li>
+                            <i className="fa-regular fa-message"></i>
+                            {restaurant.num_reviews} Reviews
+                        </li>
+                        <li>
+                            <span className="fa-money-bill"></span>
+                            {restaurant.price_range}
+                        </li>
+                        <li>
+                            <span className="fa-utensils"></span>
+                            {restaurant.food_type}
+                        </li>
                     </ul>
                 </div>
                 <div className="restaurant-description">{restaurant.description}</div>
-                <div className="reviews-header" ref={this.reviewsRef}>What people are saying</div>
+                <div className="reviews-header" ref={this.reviewsRef}>What {restaurant.num_reviews} people are saying</div>
+                <div className="reviews-intro">
+                    <div className="reviews-intro-header">Overall ratings and reviews</div>
+                    <div className="reviews-intro-description">Reviews can only be made by diners who have eaten at this restaurant</div>
+                    <div className="reviews-overall-rating">
+                        <div className="overall-rating">
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-0`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-1`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-2`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-3`}></i>
+                            <i className="fa-solid fa-star" id={`${restaurantName}-star-4`}></i>
+                        </div>
+                        <div>{restaurant.avg_rating.toFixed(1)} based on recent ratings</div>
+                    </div>
+                    <div className="overall-rating-categories">
+                        <div className="food_rating">
+                            <div>{restaurant.food_rating.toFixed(1)}</div>
+                            <div>Food</div>
+                        </div>
+                        <div className="service_rating">
+                            <div>{restaurant.service_rating.toFixed(1)}</div>
+                            <div>Service</div>
+                        </div>
+                        <div className="ambience_rating">
+                            <div>{restaurant.ambience_rating.toFixed(1)}</div>
+                            <div>Ambience</div>
+                        </div>
+                        <div className="value_rating">
+                            <div>{restaurant.value_rating.toFixed(1)}</div>
+                            <div>Value</div>
+                        </div>
+                    </div>
+                </div>
                 <ul className="reviews-index">
                     {reviews.map( review => (
                         <li key={review.id}>
-                            <ReviewShow review={review}/>
+                            <ReviewShow review={review} restaurant={restaurant}/>
                         </li>
                     ))}
                 </ul>

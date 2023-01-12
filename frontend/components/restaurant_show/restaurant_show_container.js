@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { fetchFavorites, createFavorite, deleteFavorite } from "../../actions/favorite_actions";
 import { fetchRestaurant } from "../../actions/restaurant_actions";
+import { fetchReviews } from "../../actions/review_actions";
 import { openModal } from "../../actions/modal_actions";
 import RestaurantShow from "./restaurant_show";
 

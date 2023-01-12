@@ -7,6 +7,7 @@ class ReviewShow extends React.Component {
 
     render() {
         const review = this.props.review;
+        const restaurant = this.props.restaurant;
         return (
             <div className="review-details">
                 <ul className="review-scores">

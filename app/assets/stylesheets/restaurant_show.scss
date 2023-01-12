@@ -45,12 +45,15 @@
     border-bottom: 1px solid lightgray;
 }
 
-.restaurant-section-links li {
-    cursor: pointer;
+.restaurant-description {
+    line-height: 1.5;
+    padding: 16px 0px;
+    border-bottom: 1px solid lightgray;
 }
 
 .restaurant-section-links li {
     margin-right: 32px;
+    cursor: pointer;
 }
 
 .restaurant-show-name {
@@ -65,7 +68,8 @@
 
 .details-list li {
     padding: 10px 0px;
-    margin-right: 10px;
+    margin-right: 24px;
+    display: flex;
 }
 
 .reservation-tile {
@@ -117,6 +121,57 @@
 .reservation-detail-header {
     padding-top: 8px;
     padding-bottom: 4px;
+}
+
+.reviews-header {
+    padding: 16px 0px;
+    border-bottom: 1px solid lightgray;
+    font-size: 24px;
+}
+
+.reviews-intro {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 16px;
+}
+
+.reviews-intro-header {
+    font-weight: bolder;
+    padding: 16px 0px;
+}
+
+.reviews-intro-description {
+    padding-bottom: 16px;
+}
+
+.reviews-index {
+    padding-top: 32px;
+}
+
+.reviews-overall-rating {
+    display: flex;
+}
+
+.overall-rating-categories {
+    display: flex;
+    padding: 16px 0px;
+}
+
+.overall-rating-categories > div {
+    padding: 0px 8px;
+    border-left: 1px solid lightgray;
+}
+
+.overall-rating-categories > div > div {
+    padding: 4px 0px;
+}
+
+.overall-rating-categories div {
+    text-align: center;
+}
+
+.overall-rating-categories > div:first-child {
+    padding-left: 0px;
+    border-left: none;
 }
 
 .additional-info-header {
@@ -174,4 +229,24 @@
 .fav-button-content > i {
     font-size: 16px;
     margin-right: 8px;
+}
+
+.fa-message {
+    padding-left: 8px;
+    transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+}
+
+.fa-money-bill {
+    font-family: FontAwesome;
+    content: "\f0d6";
+    padding-right: 8px;
+}
+
+.fa-utensils {
+    font-family: FontAwesome;
+    content: "\f2e7";
+    padding-right: 8px;
 }
