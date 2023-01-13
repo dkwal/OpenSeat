@@ -4,7 +4,7 @@
     display: flex;
     margin-top: 16px;
     margin-bottom: 16px;
-    margin-left: 32px;
+    margin-left: 48px;
     padding: 16px;
     width: 60%;
     cursor: pointer;
@@ -25,4 +25,37 @@
 .profile-reservation-restaurant {
     font-weight: 700;
     font-size: 18px;
+}
+
+.reservations-list-header {
+    font-size: 24px;
+    margin-left: 32px;
+}
+
+.reservations-list-empty {
+    margin: 16px 0px 16px 48px;
+
+}
+
+.fa-circle-check {
+    color: green;
+    padding-right: 8px;
+}
+
+.reservation-completed {
+    display: flex;
+    padding: 8px 0px;
+}
+
+.reservation-info > li {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.reservation-info > li > i {
+    margin-right: 8px;
+}
+
+.profile-reservation-size > div, .profile-reservation-date > div {
+    margin-left: 2px;
 }

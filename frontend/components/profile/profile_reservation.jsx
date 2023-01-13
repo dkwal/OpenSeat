@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { isDateInPast } from "../../util/date_time_converter";
+import { isDateInPast, createReadableDateTime } from "../../util/date_time_converter";
 
 class ProfileReservation extends React.Component {
     constructor(props) {
@@ -43,12 +43,28 @@ class ProfileReservation extends React.Component {
                 const userReviews = this.props.reviews;
                 for (let i = 0; i < userReviews.length; i++) {
                     if (userReviews[i].restaurant_id === this.props.reservation.restaurant.id) {
-                        this.reservationText = (<div className="reservation-text">Click to update your review</div>);
+                        this.reservationText = (
+                            <div className="reservation-text">
+                                <div className="reservation-completed">
+                                    <i className="fa-solid fa-circle-check"></i>
+                                    <div>Reservation completed</div>
+                                </div>
+                                <div>Click to update your review</div>
+                            </div>
+                        );
                         return this.updateToModifyReviewPath;
                     }
                 }
             }
-            this.reservationText = (<div className="reservation-text">Click to submit a review</div>);
+            this.reservationText = (
+                <div className="reservation-text">
+                    <div className="reservation-completed">
+                        <i className="fa-solid fa-circle-check"></i>
+                        <div>Reservation completed</div>
+                    </div>
+                    <div>Click to submit a review</div>
+                </div>
+            );
             return this.updateToReviewPath;
         } else {
             this.reservationText = (<div className="reservation-text">Click to modify your reservation</div>)
@@ -57,15 +73,29 @@ class ProfileReservation extends React.Component {
     }
 
     render() {
+        const date = this.props.reservation.date;
+        const time = this.props.reservation.time;
+        let readableDate = createReadableDateTime(date, time);
+        readableDate = readableDate.split(", ")[1];
+        readableDate = readableDate.split (" at ")[0] + ", " +  date.split("-")[0];
         return (
             <div className="profile-reservation" onClick={this.updatePath()}>
                 <img className="reservation-img" src={this.props.reservation.photourl} />
                 <div className="profile-reservation-text">
                     <ul className="reservation-info">
                         <li className="profile-reservation-restaurant">{this.props.reservation.restaurant.name}</li>
-                        <li className="profile-reservation-date">{this.props.reservation.date}</li>
-                        <li className="profile-reservation-time">{this.props.reservation.time}</li>
-                        <li className="profile-reservation-size">{this.props.reservation.party_size}</li>
+                        <li className="profile-reservation-size">
+                            <i className="fa-regular fa-user"></i>
+                            <div>{this.props.reservation.party_size}</div>
+                        </li>
+                        <li className="profile-reservation-date">
+                            <i className="fa-regular fa-calendar"></i>
+                            <div>{readableDate}</div>
+                        </li>
+                        <li className="profile-reservation-time">
+                            <i className="fa-regular fa-clock"></i>    
+                            <div>{time}</div>
+                        </li>
                     </ul>
                     {this.reservationText}
                 </div>

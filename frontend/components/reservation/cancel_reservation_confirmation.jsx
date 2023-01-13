@@ -10,7 +10,10 @@ class CancelReservationConfirmation extends React.Component{
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.deleteReservation(this.props.reservation.id);
+        this.props.deleteReservation(this.props.reservation.id)
+            .then((res) => {
+                console.log(res);
+            });
         if (this.props.user) {
             this.props.history.push(`/users/${this.props.user.id}/profile`);
         } else {

@@ -12,12 +12,14 @@ class UserProfile extends React.Component {
     }
     
     componentDidMount() {
-        this.props.fetchReservations(this.props.match.params.user_id)
-            .then(res1 => this.props.fetchReviews(this.props.match.params.user_id)
-                .then(res2 => this.setState({
-                    reservations: res1.reservations,
-                    reviews: res2.reviews
-        })));
+        setTimeout(() => {
+            this.props.fetchReservations(this.props.match.params.user_id)
+                .then(res1 => this.props.fetchReviews(this.props.match.params.user_id)
+                    .then(res2 => this.setState({
+                        reservations: res1.reservations,
+                        reviews: res2.reviews
+            })));
+        }, 50)
 
     }
 
@@ -30,15 +32,15 @@ class UserProfile extends React.Component {
         if (upcomingReservations.length === 0) {
             upcomingReservationsList = (
                 <div>
-                    <h2>Upcoming Reservations</h2>
-                    <div>You have no upcoming reservations.</div>
+                    <h2 className="reservations-list-header">Upcoming Reservations</h2>
+                    <div className="reservations-list-empty">You have no upcoming reservations.</div>
                 </div>
             );
         } else {
             upcomingReservationsList = (
                 <div>
-                    <h2>Upcoming Reservations</h2>
-                    <ul>
+                    <h2 className="reservations-list-header">Upcoming Reservations</h2>
+                    <ul className="reservations-list">
                         {upcomingReservations.map( reservation => (
                             <li key={reservation.id}>
                                 <ProfileReservation reservation={reservation} reviews={userReviews}/>
@@ -56,15 +58,15 @@ class UserProfile extends React.Component {
         if (pastReservations.length === 0) {
             pastReservationsList = (
                 <div>
-                    <h2>Past Reservations</h2>
-                    <div>You have no past reservations.</div>
+                    <h2 className="reservations-list-header">Past Reservations</h2>
+                    <div className="reservations-list-empty">You have no past reservations.</div>
                 </div>
             );
         } else {
             pastReservationsList = (
                 <div>
-                    <h2>Past Reservations</h2>
-                    <ul>
+                    <h2 className="reservations-list-header">Past Reservations</h2>
+                    <ul className="reservations-list">
                         {pastReservations.map( reservation => (
                             <li key={reservation.id}>
                                 <ProfileReservation reservation={reservation} reviews={userReviews} />
@@ -76,9 +78,14 @@ class UserProfile extends React.Component {
         }
 
         return (
-            <div>
-                {upcomingReservationsList}
-                {pastReservationsList}
+            <div className="profile-container">
+                <div className="profile-links">
+
+                </div>
+                <div className="profile-reservations-container">
+                    {upcomingReservationsList}
+                    {pastReservationsList}
+                </div>
             </div>
         )
     }

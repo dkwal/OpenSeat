@@ -242,12 +242,21 @@ class RestaurantShow extends React.Component {
                 <ReservationTileContainer restaurantId={restaurant.id} />
                 <ul className="additional-details">
                     <li className="additional-info-header">Additional information</li>
-                    <li className="additional-info-item">Address</li>
-                    <li>{restaurant.address}</li>
-                    <li className="additional-info-item">Phone Number</li>
-                    <li>{restaurant.phone_number}</li>
-                    <li className="additional-info-item">Menu</li>
-                    <li ref={this.menuRef}>{restaurant.menu}</li>
+                    <li className="additional-info-item">
+                        <i className="fa-regular fa-building"></i>
+                        <div>Address</div>
+                    </li>
+                    <li className="additional-info-content">{restaurant.address}</li>
+                    <li className="additional-info-item">
+                        <i className="fa-solid fa-phone"></i>
+                        <div>Phone Number</div>
+                    </li>
+                    <li className="additional-info-content">{restaurant.phone_number}</li>
+                    <li className="additional-info-item">
+                        <i className="fa-solid fa-arrow-up-right-from-square"></i>
+                        <div>Website</div>
+                    </li>
+                    <li className="additional-info-content" ref={this.menuRef}>{restaurant.menu}</li>
                 </ul>
             </div>
         </div>

@@ -1,0 +1,56 @@
+.review-container {
+    display: flex;
+    padding: 16px 0px;
+    border-bottom: 1px solid lightgray;
+}
+
+.review-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-scores {
+    display: flex;
+    padding: 16px 0px;
+}
+
+.review-scores > div {
+    padding-right: 8px;
+}
+
+.review-individual-score:after {
+    content: "\B7";
+    padding-left: 8px;
+
+}
+
+.review-body {
+    padding-top: 8px;
+    padding-bottom: 16px;
+}
+
+.reviewer-initials {
+    font-size: 16px;
+    background-color: #6c8ae4;
+    color: white;
+    padding: 16px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewer-details {
+    padding: 0px 16px;
+}
+
+.reviewer-name {
+    overflow-wrap: break-word;
+    width: 68px;
+    height: 48px;
+    text-align: center;
+    padding: 8px 0px;
+    
+}
