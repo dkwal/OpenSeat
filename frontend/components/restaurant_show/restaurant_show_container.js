@@ -8,8 +8,7 @@ import RestaurantShow from "./restaurant_show";
 const mapStateToProps = (state, {match}) => ({
     restaurant: state.entities.restaurants[match.params.restaurantId],
     currentUser: Object.values(state.entities.users)[0],
-    userFavorites: Object.values(state.entities.favorites),
-    reviews: Object.values(state.entities.reviews)
+    userFavorites: Object.values(state.entities.favorites)
 })
 
 const mapDispatchToProps = (dispatch, {match}) => ({

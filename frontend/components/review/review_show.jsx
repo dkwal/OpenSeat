@@ -7,8 +7,19 @@ class ReviewShow extends React.Component {
 
     colorStars() {
         const id = this.props.review.id;
+
+        // need to clear existing style rules for these stars before adding new ones
+        const sheet = document.styleSheets[1];
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j < sheet.cssRules.length; j++) {
+                if (sheet.cssRules[j].selectorText === `#review-${id}-star-${i}::after`) {
+                    sheet.deleteRule(j);
+                }
+            }
+        }
+
+        // now we can add new rules
         let score = this.props.review.overall_rating;
-        console.log(score);
         let starCount = 0;
         while (score >= 1) {
             const rule = `#review-${id}-star-${starCount}:after {
@@ -21,12 +32,12 @@ class ReviewShow extends React.Component {
                 overflow: hidden;
                 color: #da3743;
             }`;
-            document.styleSheets[18].insertRule(rule);
+            document.styleSheets[1].insertRule(rule);
             starCount += 1;
             score -= 1.0;
         }
         if (starCount < 4) {
-            document.styleSheets[18].insertRule(`#review-${id}-star-${starCount}:after {
+            document.styleSheets[1].insertRule(`#review-${id}-star-${starCount}:after {
                 font-family: FontAwesome;
                 content: "\\f005";
                 position: absolute;
@@ -42,6 +53,10 @@ class ReviewShow extends React.Component {
     render() {
         this.colorStars();
         const review = this.props.review;
+        if (!review) {
+            return null;
+        }
+        console.log(review);
         const id = review.id;
         return (
             <div className="review-container">

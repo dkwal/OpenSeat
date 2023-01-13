@@ -30,7 +30,10 @@ class CreateReviewForm extends React.Component {
 
     componentDidMount() {
         this.props.fetchRestaurant()
-            .then(response => this.setState({restaurant: response.restaurant}))
+            .then(response => {
+                this.setState({restaurant: response.restaurant});
+                this.props.fetchRestaurantReviews();
+            })
     }
 
     update(field) {
