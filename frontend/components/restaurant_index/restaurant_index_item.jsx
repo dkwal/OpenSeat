@@ -17,7 +17,7 @@ class RestaurantIndexItem extends React.Component {
         const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
 
         // need to clear existing style rules for these stars before adding new ones
-        const sheet = document.styleSheets[1];
+        const sheet = document.styleSheets[0];
         for (let i = 0; i < 5; i++) {
             for (let j = 0; j < sheet.cssRules.length; j++) {
                 if (sheet.cssRules[j].selectorText === `#${restaurantName}-star-${i}::after`) {
@@ -40,12 +40,12 @@ class RestaurantIndexItem extends React.Component {
                 overflow: hidden;
                 color: #da3743;
             }`;
-            document.styleSheets[1].insertRule(rule);
+            document.styleSheets[0].insertRule(rule);
             starCount += 1;
             score -= 1.0;
         }
         if (starCount < 4) {
-            document.styleSheets[1].insertRule(`#${restaurantName}-star-${starCount}:after {
+            document.styleSheets[0].insertRule(`#${restaurantName}-star-${starCount}:after {
                 font-family: FontAwesome;
                 content: "\\f005";
                 position: absolute;
