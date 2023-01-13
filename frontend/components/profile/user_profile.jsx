@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileReservation from "./profile_reservation";
 import { isDateInPast } from "../../util/date_time_converter";
+import { Link } from "react-router-dom";
 
 class UserProfile extends React.Component {
     constructor(props) {
@@ -79,9 +80,12 @@ class UserProfile extends React.Component {
 
         return (
             <div className="profile-container">
-                <div className="profile-links">
-
-                </div>
+                <ul className="profile-links">
+                    <li>Reservations</li>
+                    <li>
+                        <Link to={``}></Link>
+                    </li>
+                </ul>
                 <div className="profile-reservations-container">
                     {upcomingReservationsList}
                     {pastReservationsList}
