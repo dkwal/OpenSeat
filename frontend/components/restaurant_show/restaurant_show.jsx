@@ -140,7 +140,7 @@ class RestaurantShow extends React.Component {
                 overflow: hidden;
                 color: #da3743;
             }`;
-            document.styleSheets[0].insertRule(rule, 1);
+            document.styleSheets[0].insertRule(rule);
             starCount += 1;
             score -= 1.0;
         }
@@ -154,7 +154,7 @@ class RestaurantShow extends React.Component {
                 width: ${score * 100}%;
                 overflow: hidden;
                 color: #da3743;
-            }`, 1);
+            }`);
         }
     }
 
