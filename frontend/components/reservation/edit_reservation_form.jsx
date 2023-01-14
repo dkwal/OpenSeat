@@ -9,7 +9,7 @@ class EditReservationForm extends React.Component {
             party_size: 2,
             time: "7:30 pm",
             date: "2022-12-23",
-            photourl: "placeholder",
+            photourl: "https://open-seat-seed.s3.us-west-1.amazonaws.com/restaurant-photo.jpeg",
             name: "restaurant"
         }
         this.handleSubmit = this.handleSubmit.bind(this);
