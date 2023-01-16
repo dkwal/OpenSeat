@@ -45,7 +45,7 @@ class ProfileFavorite extends React.Component {
                 overflow: hidden;
                 color: #da3743;
             }`;
-            document.styleSheets[0].insertRule(rule);
+            document.styleSheets[0].insertRule(rule, 1);
             starCount += 1;
             score -= 1.0;
         }
@@ -59,7 +59,7 @@ class ProfileFavorite extends React.Component {
                 width: ${score * 100}%;
                 overflow: hidden;
                 color: #da3743;
-            }`);
+            }`, 1);
         }
     }
 
