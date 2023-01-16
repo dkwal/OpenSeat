@@ -1,3 +1,8 @@
+.profile-container {
+    display: inline-flex;
+    margin-left: 15%;
+}
+
 .profile-reservation {
     border: 1px solid lightgray;
     border-radius: 4px;
@@ -6,7 +11,7 @@
     margin-bottom: 16px;
     margin-left: 48px;
     padding: 16px;
-    width: 60%;
+    width: 100%;
     cursor: pointer;
 }
 
@@ -29,7 +34,7 @@
 
 .reservations-list-header {
     font-size: 24px;
-    margin-left: 32px;
+    margin-left: 48px;
 }
 
 .reservations-list-empty {
@@ -58,4 +63,91 @@
 
 .profile-reservation-size > div, .profile-reservation-date > div {
     margin-left: 2px;
+}
+
+.profile-links {
+    margin-left: 32px;
+}
+
+.profile-links > li {
+    margin-top: 24px;
+}
+
+.profile-links > li > a {
+    text-decoration: none;
+    color: #da3743;
+}
+
+.profile-links > li > a:hover {
+    font-weight: bolder;
+}
+
+.current-page-link {
+    font-weight: bolder;
+}
+
+.profile-favorite {
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    display: flex;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 48px;
+    padding: 16px;
+    width: 100%;
+}
+
+.profile-favorite-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-favorite-restaurant {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#profile-bookmark {
+
+    color: #da3743;
+}
+
+.favorite-info > li {
+    margin-bottom: 8px;
+}
+
+.remove-favorite {
+    display: flex;
+    color: #666666;
+    cursor: pointer;
+}
+
+.remove-favorite > i {
+    margin-right: 8px;
+}
+
+.remove-favorite:hover {
+    font-weight: bolder;
+}
+
+.favorites-list-header {
+    font-size: 24px;
+    margin-left: 48px;
+}
+
+.no-favorites {
+    margin-left: 48px;
+    margin-top: 16px;
+}
+
+.profile-favorite-button {
+    background-color: #da3743;
+    color: white;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+    width: 180px;
+    padding: 16px 0px;
+    text-align: center;
+    text-decoration: none;
 }

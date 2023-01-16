@@ -81,9 +81,9 @@ class UserProfile extends React.Component {
         return (
             <div className="profile-container">
                 <ul className="profile-links">
-                    <li>Reservations</li>
+                    <li className="current-page-link">Reservations</li>
                     <li>
-                        <Link to={``}></Link>
+                        <Link to={`/users/${this.props.match.params.user_id}/profile/saved`}>Saved Restaurants</Link>
                     </li>
                 </ul>
                 <div className="profile-reservations-container">
