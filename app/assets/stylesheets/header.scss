@@ -49,6 +49,15 @@
     align-items: center;
 }
 
-.profile-icon {
+.profile-icon-container {
+    background: #eaedf3;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
 }
