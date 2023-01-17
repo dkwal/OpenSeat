@@ -9,7 +9,6 @@ class EditReviewForm extends React.Component {
             restaurant = this.props.restaurant;
         } else {
             restaurant = { // placeholder to avoid erroring out on page refresh
-                id: 0,
                 name: 'placeholder'
             }; 
         }
@@ -24,7 +23,10 @@ class EditReviewForm extends React.Component {
                 body: "",
                 id: 0
             }, 
-            restaurant: restaurant
+            restaurant: restaurant,
+            errors: {
+                body: ""
+            }
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -38,20 +40,48 @@ class EditReviewForm extends React.Component {
 
     update(field) {
         return e=> {
+            const fieldName = e.currentTarget.name;
+            const value = e.currentTarget.value;
+            // error handling
+            let errors = this.state.errors;
+            switch (fieldName) {
+                    case "body":
+                        if (value.length < 50) {
+                            errors.body = "Please write at least 50 characters";
+                        } else {
+                            errors.body = ""; 
+                        }
+                    break;
+                default:
+                    break;
+            }
+
             const oldReview = this.state.review;
             const newReview = Object.assign({}, oldReview);
             newReview[field] = e.currentTarget.value;
-            this.setState({review: newReview});
+            this.setState({errors: errors, review: newReview});
         }
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.updateReview(this.state.review, this.state.restaurant.id)
-            .then(response => this.props.history.push(`/restaurants/${this.state.restaurant.id}`));
+        const errors = this.state.errors;
+        let errorsPresent = false;
+        Object.values(errors).forEach(error => {
+            if (error.length > 0) {
+                errorsPresent = true;
+            }
+        })
+        // return out of function early if errors are present
+        if (errorsPresent) {
+            return;
+        }
+        this.props.updateReview(this.state.review, this.props.restaurantId)
+            .then(response => this.props.history.push(`/restaurants/${this.props.restaurantId}`));
     }
 
     render() {
+        const errors = this.state.errors;
         return (
         <div className="review-ratings-container">
             <h2>Update your review for {this.state.restaurant.name}</h2>
@@ -62,7 +92,7 @@ class EditReviewForm extends React.Component {
                     </symbol>
                 </svg>
 
-                <label className="overall-rating" >
+                <label className="form-overall-rating" >
                     <div className="review-category">
                         <div className="review-category-name">Overall</div>
                         <div className="rating-stars-container">
@@ -282,7 +312,8 @@ class EditReviewForm extends React.Component {
                         </div>
                     </div>
                 </label>
-                <textarea className="review-text" placeholder="Your review must be at least 50 characters" onChange={this.update("body")} defaultValue={this.state.review.body}></textarea>
+                <textarea className="review-text" name="body" placeholder="Your review must be at least 50 characters" onChange={this.update("body")} defaultValue={this.state.review.body}></textarea>
+                <div className="body-error">{errors.body}</div>
                 <div className="submit-review-button">
                     <button>Update review</button>
                     <Link to={`/reviews/${this.state.review.id}/delete`}>Delete Review</Link>

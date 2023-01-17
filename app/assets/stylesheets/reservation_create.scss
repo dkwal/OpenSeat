@@ -29,7 +29,7 @@
     padding: 12px 6px;
     border: 1px solid lightgray;
     border-radius: 4px;
-    width: 45%;
+    width: 90%;
 }
 
 .first-and-last input:hover {
@@ -47,7 +47,7 @@
     padding: 12px 6px;
     border: 1px solid lightgray;
     border-radius: 4px;
-    width: 45%;
+    width: 90%;
 }
 
 .phone-email input:hover {
@@ -75,3 +75,14 @@
     margin-top: 8px;
     width: 640.15px;
 }
+
+.field-container {
+    width: 100%;
+    color: #da3743;
+    font-size: 12px;
+}
+
+.field-container > div {
+    margin-top: 4px;
+}
+

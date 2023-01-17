@@ -27,8 +27,7 @@ const mapStateToProps = (state, ownProps) => {
             party_size: partySize,
 
         },
-        restaurant: restaurant,
-        errors: state.errors.reservation
+        restaurant: restaurant
     }
 }
 
