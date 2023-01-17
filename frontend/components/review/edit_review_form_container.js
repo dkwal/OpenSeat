@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         restaurant: restaurant,
-        userId: userId
+        userId: userId,
+        restaurantId: restaurantId
     }
 }
 
