@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class DeleteReviewConfirmation extends React.Component{
     constructor(props) {
@@ -13,13 +14,18 @@ class DeleteReviewConfirmation extends React.Component{
     }
 
     render() {
+        const review = this.props.review;
         return (
-            <div>
-                <h2>Are you sure you want to delete this review?</h2>
-
-                <form onSubmit={this.handleSubmit}>
-                    <button>Delete Review</button>
-                </form>
+            <div className="res-details-container">
+                <img className="reservation-img" src={review.photourl} />
+                <div className="reservation-details">
+                    <h3>{review.restaurant.name}</h3>
+                    <div className="confirm-message">Are you sure you want to delete this review?</div>
+                    <form className="cancel-res-form" onSubmit={this.handleSubmit}>
+                        <button>Delete Review</button>
+                        <Link to={`/restaurants/${review.restaurant.id}/reviews/${review.id}`}>Nevermind</Link>
+                    </form>
+                </div>
 
     
             </div>
