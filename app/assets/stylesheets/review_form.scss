@@ -82,6 +82,16 @@ input[type=radio].star-radio {
     margin-top: 16px;
 }
 
+.submit-review-button a {
+    text-decoration: none;
+    margin-left: 8px;
+    color: #da3743;
+}
+
+.submit-review-button a:hover {
+    font-weight: bolder;
+}
+
 .submit-review-button button {
     background-color: #da3743;
     color: white;
