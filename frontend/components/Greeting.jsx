@@ -30,7 +30,9 @@ class Greeting extends React.Component {
     personalGreeting = () => (
         <div className="header-group">
             <h2 className="header-name">Welcome, {this.props.currentUser.first_name}!</h2>
-            <i className="profile-icon fa-regular fa-user" onClick={() => this.redirectToProfile(this.props.currentUser)}></i>
+            <div className="profile-icon-container" onClick={() => this.redirectToProfile(this.props.currentUser)}>
+                <i className="profile-icon fa-regular fa-user"></i>
+            </div>
             <button className="logout-button" onClick={this.props.logout}>Log out</button>
         </div>
     )
