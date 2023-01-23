@@ -103,3 +103,28 @@ export const createReadableDateTime = (dateStr, timeStr) => {
 
     
 }
+
+export const findNearestReservationTimes  = () => {
+    const date = new Date();
+    let hours = date.getHours() + 1;
+    // go to the next hour if closest hour is less than 30 min away
+    if (date.getMinutes() >= 30) {
+        hours += 1;
+    }
+    // mod hours by 24 in case we passed 24 hours
+    hours %= 24;
+    // our site does not allow reservations before 11:00 am,
+    // so set to 11:00 am if earlier than that
+    if (hours < 11) {
+        hours = 11;
+    }
+    let timeOfDay = "am";
+    if (hours >= 12) {
+        timeOfDay = "pm"
+    }
+    if (hours > 12) {
+        hours -= 12;
+    }
+    return [`${hours}:00 ${timeOfDay}`, `${hours}:30 ${timeOfDay}`];
+
+}

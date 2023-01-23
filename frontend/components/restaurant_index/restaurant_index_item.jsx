@@ -1,5 +1,6 @@
 import React from "react"
 import { withRouter } from "react-router-dom";
+import { findNearestReservationTimes } from "../../util/date_time_converter";
 
 class RestaurantIndexItem extends React.Component {
 
@@ -60,6 +61,7 @@ class RestaurantIndexItem extends React.Component {
 
     render() {
         this.colorStars();
+        const resTimes = findNearestReservationTimes();
         const restaurantName = this.props.restaurant.name.split(" ").join("").split("&").join("");
         return(
             <div className="restaurant-index-item" onClick={this.updatePath}>
@@ -81,8 +83,8 @@ class RestaurantIndexItem extends React.Component {
                         <div className="price-range">{this.props.restaurant.price_range}</div>
                     </div>
                     <div className="timeslot-buttons">
-                        <button>5:30 pm</button>
-                        <button>6:00 pm</button>
+                        <button>{resTimes[0]}</button>
+                        <button>{resTimes[1]}</button>
                     </div>
                 </div>
             </div>
