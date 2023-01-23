@@ -12,7 +12,6 @@ const MinDatePicker = (props) => {
         onChange={(date) => {
           setStartDate(date);
           props.updateDate(date);
-          console.log(date);
         }}
         minDate={subDays(new Date(), 0)}
       />
