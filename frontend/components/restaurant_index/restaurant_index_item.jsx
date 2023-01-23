@@ -1,16 +1,26 @@
 import React from "react"
 import { withRouter } from "react-router-dom";
-import { findNearestReservationTimes } from "../../util/date_time_converter";
+import { findNearestReservationTimes, convertTimeToMilitary, convertDateToString } from "../../util/date_time_converter";
 
 class RestaurantIndexItem extends React.Component {
 
     constructor(props) {
         super(props)
         this.updatePath = this.updatePath.bind(this);
+        this.redirectToReservationForm = this.redirectToReservationForm.bind(this);
+        this.ref1 = React.createRef();
+        this.ref2 = React.createRef();
     }
 
     updatePath() {
         let path = `/restaurants/${this.props.restaurant.id}`;
+        this.props.history.push(path);
+    }
+
+    redirectToReservationForm(ref) {
+        const date = convertDateToString(new Date());
+        const time = convertTimeToMilitary(ref.current.innerHTML).split(":").join("").slice(0, 4);
+        let path = `/reservations/new/${this.props.userId}/${this.props.restaurant.id}/2/${date}/${time}`;
         this.props.history.push(path);
     }
 
@@ -83,8 +93,8 @@ class RestaurantIndexItem extends React.Component {
                         <div className="price-range">{this.props.restaurant.price_range}</div>
                     </div>
                     <div className="timeslot-buttons">
-                        <button>{resTimes[0]}</button>
-                        <button>{resTimes[1]}</button>
+                        <button ref={this.ref1} onClick={(e) => {e.stopPropagation(); this.redirectToReservationForm(this.ref1);}}>{resTimes[0]}</button>
+                        <button ref={this.ref2} onClick={(e) => {e.stopPropagation(); this.redirectToReservationForm(this.ref2);}}>{resTimes[1]}</button>
                     </div>
                 </div>
             </div>

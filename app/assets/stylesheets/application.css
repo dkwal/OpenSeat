@@ -17,3 +17,7 @@
 body, button {
     font-family: 'Arimo', sans-serif;
 }
+
+#root > div > div {
+    min-height: 100vh;
+}

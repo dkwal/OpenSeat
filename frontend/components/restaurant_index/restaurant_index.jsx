@@ -25,9 +25,13 @@ class RestaurantIndex extends React.Component {
     }
 
     render() {
+        let userId = this.props.currentUserId;
+        if (!userId) {
+            userId = 0;
+        }
         let autoCompleteList = this.state.autoCompleteResults.map((restaurant, index) => (
             <li key={index}>
-                <RestaurantIndexItem restaurant={restaurant}/>
+                <RestaurantIndexItem restaurant={restaurant} userId={userId}/>
             </li>
         ))
         return (

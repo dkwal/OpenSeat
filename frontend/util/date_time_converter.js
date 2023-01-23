@@ -29,7 +29,7 @@ export const convertStringToTime = (str) => {
     return time;
 }
 
-const convertTimeToMilitary = (time) => {
+export const convertTimeToMilitary = (time) => {
     const timeOfDay = time.slice(-2);
     const parts = time.split(':');
     let hours = parseInt(parts[0]);

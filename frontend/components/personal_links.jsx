@@ -19,7 +19,7 @@ const PersonalLinks = props => {
                 </div>
             </div>
             <div className="portfolio-project">This website is purely a portfolio project to showcase the developer's skills.</div>
-            <div className="footer-disclaimer">There is no intention to ever use this project for profit as a legitimate way to book reservations.</div>
+            <div className="footer-disclaimer">There is no intention to ever use this project for profit or as a legitimate way to book reservations.</div>
         </div>
     )
 }
