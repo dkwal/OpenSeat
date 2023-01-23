@@ -14,7 +14,7 @@ import CreateReviewFormContainer from "./review/create_review_form_container";
 import EditReviewFormContainer from "./review/edit_review_form_container";
 import DeleteReviewConfirmationContainer from "./review/delete_review_confirmation_container";
 import ProfileSavedRestaurantsContainer from "./profile/profile_saved_restaurants_container"
-
+import PersonalLinks from "./personal_links";
 
 const App = () => (
     <div>
@@ -38,6 +38,9 @@ const App = () => (
             <ProtectedRoute path="/restaurants/:restaurantId/reviews/:reviewId" component={EditReviewFormContainer}/>
             <ProtectedRoute path="/reviews/:reviewId/delete" component={DeleteReviewConfirmationContainer}/>
         </Switch>
+        <footer className="footer">
+            <PersonalLinks />
+        </footer>
     </div>
 )
 
