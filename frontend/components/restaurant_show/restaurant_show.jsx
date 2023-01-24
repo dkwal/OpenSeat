@@ -164,7 +164,6 @@ class RestaurantShow extends React.Component {
         if (!this.props.restaurant || !this.state.reviews) {
             return null;
         }
-        console.log(reviews);
         const restaurantName = restaurant.name.split(" ").join("").split("&").join("");
         this.colorStars();
 

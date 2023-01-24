@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     ReactDOM.render(<Root store={store} />, root);
 
-    window.getState = store.getState;
-    window.dispatch = store.dispatch;
-    window.signup = signup;
-    window.login = login;
-    window.logout = logout;
+    // window.getState = store.getState;
+    // window.dispatch = store.dispatch;
+    // window.signup = signup;
+    // window.login = login;
+    // window.logout = logout;
 });

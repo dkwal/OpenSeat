@@ -56,7 +56,6 @@ class ReviewShow extends React.Component {
         if (!review) {
             return null;
         }
-        console.log(review);
         const id = review.id;
         return (
             <div className="review-container">
