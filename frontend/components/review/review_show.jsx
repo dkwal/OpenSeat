@@ -36,7 +36,7 @@ class ReviewShow extends React.Component {
             starCount += 1;
             score -= 1.0;
         }
-        if (starCount < 4) {
+        if (starCount < 5) {
             document.styleSheets[0].insertRule(`#review-${id}-star-${starCount}:after {
                 font-family: FontAwesome;
                 content: "\\f005";
